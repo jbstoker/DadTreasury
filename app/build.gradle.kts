@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.kapt)
+    id("jacoco")
 }
 
 android {
@@ -29,6 +30,9 @@ android {
     }
 
     buildTypes {
+        debug {
+            enableUnitTestCoverage = true
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -68,6 +72,33 @@ android {
 
 kapt {
     correctErrorTypes = true
+}
+
+// JaCoCo test coverage
+jacoco {
+    toolVersion = "0.8.14"
+}
+
+tasks.register("jacocoTestReport", JacocoReport::class) {
+    dependsOn("testDebugUnitTest")
+
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
+
+    val kotlinClassDir = layout.buildDirectory.dir("tmp/kotlin-classes/debug")
+    val javaClassDir = layout.buildDirectory.dir("intermediates/javac/debug")
+
+    val fileTree = fileTree(kotlinClassDir) {
+        exclude("**/R.class", "**/R\$*.class", "**/BuildConfig.*", "**/Manifest.*", "**/*Test*.*", "android/**/*.*")
+    }
+    val javaTree = fileTree(javaClassDir) {
+        exclude("**/R.class", "**/R\$*.class", "**/BuildConfig.*", "**/Manifest.*", "**/*Test*.*", "android/**/*.*")
+    }
+    sourceDirectories.setFrom(files("src/main/java"))
+    classDirectories.setFrom(fileTree, javaTree)
+    executionData.setFrom(files(layout.buildDirectory.file("jacoco/testDebugUnitTest.exec")))
 }
 
 dependencies {

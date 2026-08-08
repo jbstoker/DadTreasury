@@ -5,11 +5,11 @@
 
 [//]: # (  <a href="https://github.com/jbstoker/DadTreasury/actions"><img alt="Build Status" src="https://img.shields.io/github/actions/workflow/status/jbstoker/DadTreasury/android.yml?branch=main&label=Build"/></a>)
   <a href="https://github.com/jbstoker/DadTreasury/commits/main"><img alt="Last Commit" src="https://img.shields.io/github/last-commit/jbstoker/DadTreasury"/></a>
-  <a href="https://github.com/jbstoker/DadTreasury/releases"><img alt="Release" src="https://img.shields.io/github/v/release/jbstoker/DadTreasury?label=Release"/></a>
+  <a href="https://github.com/jbstoker/DadTreasury/releases"><img alt="Release" src="https://img.shields.io/github/v/release/jbstoker/DadTreasury?include_prereleases&label=Release"/></a>
   <a href="https://github.com/jbstoker/DadTreasury/watchers"><img alt="Stars" src="https://img.shields.io/github/stars/jbstoker/DadTreasury?style=social"/></a>
   <a href="https://github.com/jbstoker/DadTreasury/issues"><img alt="Issues" src="https://img.shields.io/github/issues/jbstoker/DadTreasury"/></a>
   <a href="https://github.com/jbstoker/DadTreasury/pulls"><img alt="Pull Requests" src="https://img.shields.io/github/issues-pr/jbstoker/DadTreasury"/></a>
-  <a href="#"><img alt="Coverage" src="https://img.shields.io/badge/Coverage-~70%25-brightgreen"/></a>
+  <a href="#"><img alt="Coverage" src="https://img.shields.io/badge/Coverage-~90%25-brightgreen"/></a>
   <a href="#"><img alt="Kotlin" src="https://img.shields.io/badge/Kotlin-2.0-orange.svg"/></a>
   <a href="#"><img alt="Jetpack Compose" src="https://img.shields.io/badge/Jetpack%20Compose-✓-blueviolet"/></a>
 </p>
