@@ -43,6 +43,17 @@ android {
         compose = true
         buildConfig = true
     }
+
+    packaging {
+        jniLibs {
+            // Keep native libraries uncompressed so they can be mmap'd at
+            // aligned offsets (required for 16 KB page size devices).
+            useLegacyPackaging = false
+        }
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
 }
 
 kapt {
