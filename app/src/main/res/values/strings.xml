@@ -141,6 +141,31 @@
     <string name="settings_language">Language</string>
     <string name="settings_language_desc">Choose app language</string>
 
+    <!-- Parent Connection -->
+    <string name="connect_parents_title">Connect Parents</string>
+    <string name="connect_parents_description">Connect two parent apps to share the family wiki and message each other securely. 🔗</string>
+    <string name="connect_parents_empty">No parent connections yet. Create a pairing code or enter one from another parent.</string>
+    <string name="connect_parents_create">Create Parent Connection</string>
+    <string name="connect_parents_your_code">Your Pairing Code</string>
+    <string name="connect_parents_name_hint">Your display name</string>
+    <string name="connect_parents_code_hint">Enter 6-character code</string>
+    <string name="connect_parents_accept">Connect to Parent App</string>
+    <string name="connect_parents_create_code">Create Code</string>
+    <string name="connect_parents_enter_code">Enter pairing code</string>
+    <string name="connect_parents_share_wiki">Share Wiki</string>
+    <string name="connect_parents_send_message">Send message</string>
+    <string name="connect_parents_disconnect">Disconnect</string>
+    <string name="connect_parents_connected">Connected Parent Apps</string>
+    <string name="connect_parents_trusted">Trusted</string>
+    <string name="connect_parents_pending">Pending</string>
+
+    <!-- Google Family Link -->
+    <string name="family_link_screen_time">Google Family Link Screen Time</string>
+    <string name="family_link_screen_time_desc">When a child completes a TIME task, screen time is granted to their Google Family account.</string>
+    <string name="family_link_not_installed">Family Link is not installed. The screen time grant will be queued for retry.</string>
+    <string name="family_link_granted">Screen time granted via Google Family Link ✓</string>
+    <string name="family_link_queued">Screen time grant queued (waiting for internet)</string>
+
     <!-- PIN -->
     <string name="pin_unlock_title">Dad Treasury</string>
     <string name="pin_unlock_hint">Enter your PIN to unlock</string>

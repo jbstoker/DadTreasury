@@ -88,6 +88,7 @@ fun HomeScreen(
                     HomeNavItem(Routes.LIBRARY, "Library", Icons.AutoMirrored.Filled.MenuBook),
                     HomeNavItem(Routes.LOCATION, "Locations", Icons.Filled.LocationOn),
                     HomeNavItem(Routes.PAIRING, "Pairing", Icons.Filled.Link),
+                    HomeNavItem(Routes.CONNECT_PARENTS, "Connect", Icons.Filled.Group),
                     HomeNavItem(Routes.DIAGNOSTICS, "Diagnostics", Icons.Filled.Build),
                 ),
                 onNavigate = onNavigate,

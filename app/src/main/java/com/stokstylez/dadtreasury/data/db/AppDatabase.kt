@@ -42,8 +42,10 @@ class Converters {
         HouseholdEntity::class,
         ParentEntity::class,
         ChildEntity::class,
+        AppConnectionEntity::class,
+        SharedLibraryPageEntity::class,
     ],
-    version = 2,
+    version = 3,
     exportSchema = false,
 )
 @TypeConverters(Converters::class)
@@ -58,6 +60,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun syncDao(): SyncDao
     abstract fun deviceDao(): DeviceDao
     abstract fun householdDao(): HouseholdDao
+    abstract fun appConnectionDao(): AppConnectionDao
+    abstract fun sharedLibraryPageDao(): SharedLibraryPageDao
 
     companion object {
         private const val DB_PASSPHRASE_KEY = "db_passphrase"
@@ -77,7 +81,7 @@ abstract class AppDatabase : RoomDatabase() {
                     "dad_treasury.db",
                 )
                     .openHelperFactory(factory)
-                    .addMigrations(MIGRATION_1_2)
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
                     .build()
                     .also { INSTANCE = it }
             }
@@ -117,6 +121,32 @@ abstract class AppDatabase : RoomDatabase() {
             override fun migrate(db: SupportSQLiteDatabase) {
                 db.execSQL(
                     "ALTER TABLE tasks ADD COLUMN completionPhotoUri TEXT DEFAULT NULL"
+                )
+            }
+        }
+
+        val MIGRATION_2_3 = object : Migration(2, 3) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL(
+                    "CREATE TABLE IF NOT EXISTS `app_connections` (" +
+                        "`id` TEXT NOT NULL, " +
+                        "`displayName` TEXT NOT NULL, " +
+                        "`pairingCode` TEXT NOT NULL, " +
+                        "`peerDeviceId` TEXT NOT NULL, " +
+                        "`isTrusted` INTEGER NOT NULL, " +
+                        "`isRevoked` INTEGER NOT NULL, " +
+                        "`createdAt` INTEGER NOT NULL, " +
+                        "`lastSyncAt` INTEGER, " +
+                        "PRIMARY KEY(`id`))"
+                )
+                db.execSQL(
+                    "CREATE TABLE IF NOT EXISTS `shared_library_pages` (" +
+                        "`id` TEXT NOT NULL, " +
+                        "`connectionId` TEXT NOT NULL, " +
+                        "`origin` TEXT NOT NULL, " +
+                        "`pageId` TEXT NOT NULL, " +
+                        "`lastSyncedAt` INTEGER NOT NULL, " +
+                        "PRIMARY KEY(`id`))"
                 )
             }
         }

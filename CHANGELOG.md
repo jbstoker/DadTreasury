@@ -1,11 +1,24 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+- **Parent App Connections**: Connect two parent apps via a 6-character pairing code to share the wiki and message each other.
+  - New `Connect` screen on the parent home quick-nav.
+  - New `app_connections` and `shared_library_pages` database tables (migration v3).
+  - New sync event types: `PARENT_APP_CONNECTED`, `PARENT_APP_DISCONNECTED`, `PARENT_LIBRARY_PAGE_SHARED`, `PARENT_CHAT_MESSAGE`.
+  - `AppConnection` domain model with trusted/pending/revoked states.
+- **Google Family Link Screen-Time Grants**: When a TIME-reward task is approved, Dad's Treasury now queues a Google Family Link screen-time grant for the child.
+  - Requires validated internet (per spec §17).
+  - Queues locally when offline and retries when connectivity returns.
+  - Opens Google Family Link so the parent can approve the extra screen/app time in one tap.
+  - New `familysync/GoogleFamilyLinkManager.kt` adapter.
+  - Added `INTERNET` and `ACCESS_NETWORK_STATE` permissions.
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
-## [Unreleased]
 
 ## [0.1.0] - 2026-08-08
 

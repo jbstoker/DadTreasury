@@ -267,3 +267,26 @@ fun DeviceIdentity.toEntity(): DeviceIdentityEntity = DeviceIdentityEntity(
     pairedAt = pairedAt,
     revokedAt = revokedAt,
 )
+
+// ---- AppConnection ----
+fun AppConnectionEntity.toDomain(): AppConnection = AppConnection(
+    id = id,
+    displayName = displayName,
+    pairingCode = pairingCode,
+    peerDeviceId = peerDeviceId,
+    isTrusted = isTrusted,
+    isRevoked = isRevoked,
+    createdAt = createdAt,
+    lastSyncAt = lastSyncAt,
+)
+
+fun AppConnection.toEntity(): AppConnectionEntity = AppConnectionEntity(
+    id = id,
+    displayName = displayName,
+    pairingCode = pairingCode,
+    peerDeviceId = peerDeviceId,
+    isTrusted = isTrusted,
+    isRevoked = isRevoked,
+    createdAt = createdAt,
+    lastSyncAt = lastSyncAt,
+)

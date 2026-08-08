@@ -170,3 +170,36 @@ interface HouseholdDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsertChild(child: ChildEntity)
 }
+
+@Dao
+interface AppConnectionDao {
+    @Query("SELECT * FROM app_connections ORDER BY createdAt DESC")
+    fun observeAll(): Flow<List<AppConnectionEntity>>
+
+    @Query("SELECT * FROM app_connections WHERE id = :id")
+    suspend fun getById(id: String): AppConnectionEntity?
+
+    @Query("SELECT * FROM app_connections WHERE pairingCode = :pairingCode LIMIT 1")
+    suspend fun getByPairingCode(pairingCode: String): AppConnectionEntity?
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsert(connection: AppConnectionEntity)
+
+    @Query("DELETE FROM app_connections WHERE id = :id")
+    suspend fun deleteById(id: String)
+}
+
+@Dao
+interface SharedLibraryPageDao {
+    @Query("SELECT * FROM shared_library_pages ORDER BY lastSyncedAt DESC")
+    fun observeAll(): Flow<List<SharedLibraryPageEntity>>
+
+    @Query("SELECT * FROM shared_library_pages WHERE connectionId = :connectionId ORDER BY lastSyncedAt DESC")
+    fun observeForConnection(connectionId: String): Flow<List<SharedLibraryPageEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsert(sharedPage: SharedLibraryPageEntity)
+
+    @Query("DELETE FROM shared_library_pages WHERE id = :id")
+    suspend fun deleteById(id: String)
+}

@@ -33,6 +33,7 @@ object Routes {
     const val LOCATION = "location"
     const val PAIRING = "pairing"
     const val DIAGNOSTICS = "diagnostics"
+    const val CONNECT_PARENTS = "connect_parents"
     const val SETTINGS = "settings"
     const val PIN_SETUP = "pin_setup"
 
@@ -168,6 +169,9 @@ fun DadTreasuryApp(
                 }
                 composable(Routes.DIAGNOSTICS) {
                     DiagnosticsScreen(repository = repository)
+                }
+                composable(Routes.CONNECT_PARENTS) {
+                    ConnectParentsScreen(repository = repository)
                 }
                 composable(Routes.SETTINGS) {
                     SettingsScreen(

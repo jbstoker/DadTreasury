@@ -74,6 +74,27 @@ data class ChatThreadEntity(
     val unreadCount: Int,
 )
 
+@Entity(tableName = "app_connections")
+data class AppConnectionEntity(
+    @PrimaryKey val id: String,
+    val displayName: String,
+    val pairingCode: String,
+    val peerDeviceId: String,
+    val isTrusted: Boolean,
+    val isRevoked: Boolean,
+    val createdAt: Long,
+    val lastSyncAt: Long?,
+)
+
+@Entity(tableName = "shared_library_pages")
+data class SharedLibraryPageEntity(
+    @PrimaryKey val id: String,
+    val connectionId: String,
+    val origin: String,
+    val pageId: String,
+    val lastSyncedAt: Long,
+)
+
 @Entity(tableName = "calendar_events")
 data class CalendarEventEntity(
     @PrimaryKey val id: String,
