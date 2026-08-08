@@ -53,11 +53,11 @@ The app ships with translations for:
 
 - 🇬🇧 English (default)
 - 🇳🇱 Dutch
-- 🇫risian (Frysk)
-- 🇩🇪 German
 - 🇫🇷 French
+- 🇩🇪 German
 - 🇪🇸 Spanish
 - 🇨🇳 Chinese
+- 🇫rysk (Frisian)
 
 ---
 

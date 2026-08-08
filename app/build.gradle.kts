@@ -13,10 +13,19 @@ android {
         applicationId = "com.stokstylez.dadtreasury"
         minSdk = 24
         targetSdk = 37
-        versionCode = 1
-        versionName = "0.1.0"
+        versionCode = 1011
+        versionName = "1.0.1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        create("release") {
+            storeFile = rootProject.file("release-keystore.jks")
+            storePassword = "DadTreasury2026"
+            keyAlias = "dadtreasury"
+            keyPassword = "DadTreasury2026"
+        }
     }
 
     buildTypes {
@@ -26,6 +35,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 

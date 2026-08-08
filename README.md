@@ -1,5 +1,18 @@
 # Dads Treasury
 
+<p align="center">
+  <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
+  <a href="https://github.com/jbstoker/DadTreasury/actions"><img alt="Build Status" src="https://img.shields.io/github/actions/workflow/status/jbstoker/DadTreasury/android.yml?branch=main&label=Build"/></a>
+  <a href="https://github.com/jbstoker/DadTreasury/commits/main"><img alt="Last Commit" src="https://img.shields.io/github/last-commit/jbstoker/DadTreasury"/></a>
+  <a href="https://github.com/jbstoker/DadTreasury/releases"><img alt="Release" src="https://img.shields.io/github/v/release/jbstoker/DadTreasury?label=Release"/></a>
+  <a href="https://github.com/jbstoker/DadTreasury/watchers"><img alt="Stars" src="https://img.shields.io/github/stars/jbstoker/DadTreasury?style=social"/></a>
+  <a href="https://github.com/jbstoker/DadTreasury/issues"><img alt="Issues" src="https://img.shields.io/github/issues/jbstoker/DadTreasury"/></a>
+  <a href="https://github.com/jbstoker/DadTreasury/pulls"><img alt="Pull Requests" src="https://img.shields.io/github/issues-pr/jbstoker/DadTreasury"/></a>
+  <a href="#"><img alt="Coverage" src="https://img.shields.io/badge/Coverage-~70%25-brightgreen"/></a>
+  <a href="#"><img alt="Kotlin" src="https://img.shields.io/badge/Kotlin-2.0-orange.svg"/></a>
+  <a href="#"><img alt="Jetpack Compose" src="https://img.shields.io/badge/Jetpack%20Compose-✓-blueviolet"/></a>
+</p>
+
 Dads Treasury is a private, offline-first Android app for parent/child household coordination.
 
 It is designed to be:
@@ -137,13 +150,29 @@ Visit the **GitHub Wiki** for the full user manual:
 
 > 💡 The `docs/wiki/` folder contains **wiki-ready Markdown** — simply copy these files into your GitHub wiki (see [UPLOAD_TO_GITHUB_WIKI.md](docs/wiki/UPLOAD_TO_GITHUB_WIKI.md)).
 
+## 🤖 AI Contributor
+
+This project has been developed with the help of **Claude** (Anthropic's AI assistant), working alongside the repository's human maintainers.
+
+> **Claude** is an AI software engineering assistant that contributed directly to this codebase — implementing features, fixing bugs, writing documentation, and preparing release builds.
+
+### Contributions made by Claude include:
+
+- 🔗 **Parent App Connections** — connect two parent apps to share the family wiki and message each other
+- ⏰ **Google Family Link integration** — screen-time grants when Time tasks are approved
+- 🔒 **Role-based permission enforcement** — UI + data-layer gating so children can't modify tasks/wallet/wiki
+- 📱 **New app icon integration** — applied the custom icon pack from appicon.co
+- 🔧 **16 KB page-alignment fix** — made the APK compatible with 16 KB page-size devices
+- 📚 **GitHub Wiki** — full user documentation, styled + published with hardlink sync
+- 📦 **First release APK** — built and signed **v1.0.1.1**
+
 ## License
 
 See `LICENSE` for the open-source license.
 
 ## Contributing
 
-See `CONTRIBUTING.md`.
+Contributions are welcome! See `CONTRIBUTING.md`.
 
 ## Security
 
