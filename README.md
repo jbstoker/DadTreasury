@@ -113,6 +113,30 @@ The first implementation goals should be:
 7. sync adapters
 8. accessibility and theme system
 
+## Documentation & Wiki
+
+Visit the **GitHub Wiki** for the full user manual:
+
+> 🔗 https://github.com/jbstoker/DadTreasury/wiki
+
+| Topic | Wiki Page |
+|-------|-----------|
+| 🚀 Getting Started | [Getting Started](docs/wiki/Getting-Started.md) |
+| ✅ Tasks | [Tasks](docs/wiki/Tasks.md) |
+| 💰 Wallet & Time Bank | [Wallet & Time Bank](docs/wiki/Wallet-Time-Bank.md) |
+| 📅 Calendar | [Calendar](docs/wiki/Calendar.md) |
+| 💬 Chat | [Chat](docs/wiki/Chat.md) |
+| 📖 Library | [Library](docs/wiki/Library.md) |
+| 📍 Location Rules | [Location Rules](docs/wiki/Location-Rules.md) |
+| 🔗 Connect Parent Apps | [Connect Parent Apps](docs/wiki/Connect-Parent-Apps.md) |
+| ⏰ Google Family Link | [Google Family Link](docs/wiki/Google-Family-Link.md) |
+| 🔒 Security | [Security](docs/wiki/Security.md) |
+| ⚙️ Settings | [Settings](docs/wiki/Settings.md) |
+| 🛠️ Diagnostics | [Diagnostics](docs/wiki/Diagnostics.md) |
+| 📋 Changelog | [Changelog](docs/wiki/Changelog.md) |
+
+> 💡 The `docs/wiki/` folder contains **wiki-ready Markdown** — simply copy these files into your GitHub wiki (see [UPLOAD_TO_GITHUB_WIKI.md](docs/wiki/UPLOAD_TO_GITHUB_WIKI.md)).
+
 ## License
 
 See `LICENSE` for the open-source license.

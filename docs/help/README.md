@@ -2,6 +2,8 @@
 
 Welcome to the Dads Treasury user manual.
 
+📖 **Prefer the online wiki?** Visit the [GitHub Wiki](https://github.com/jbstoker/DadTreasury/wiki) for the styled, browsable version.
+
 This guide explains every part of the app. Choose a topic below.
 
 ## Getting Started
