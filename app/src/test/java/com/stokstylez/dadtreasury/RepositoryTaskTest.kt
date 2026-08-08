@@ -18,7 +18,6 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertFailsWith
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
@@ -73,23 +72,20 @@ class RepositoryTaskTest {
         repository = DadTreasuryRepository(db, context = null)
     }
 
-    private fun stubSyncDao() {
-        coEvery { syncDao.upsertEvent(any()) } just runs
-        coEvery { syncDao.upsertQueueItem(any()) } just runs
-    }
-
     @Test
     fun `createTask requires parent role`() = runTest {
-        val ex = assertFailsWith<IllegalArgumentException> {
-            repository.createTask(title = "Test")
-        }
-        assertTrue(ex.message!!.contains("Only the parent"))
+        // setup - ensure sync DAO is not needed since call should fail before enqueue
+        val result = runCatching { repository.createTask(title = "Test") }
+        assertTrue(result.isFailure)
+        assertTrue(result.exceptionOrNull()!!.message!!.contains("Only the parent"))
     }
 
     @Test
     fun `createTask with parent creates task and enqueues sync`() = runTest {
         repository.currentRole = "PARENT"
-        stubSyncDao()
+        coEvery { syncDao.upsertEvent(any()) } just runs
+        coEvery { syncDao.upsertQueueItem(any()) } just runs
+
         val taskSlot = slot<TaskEntity>()
         coEvery { taskDao.upsert(capture(taskSlot)) } just runs
 
@@ -120,7 +116,9 @@ class RepositoryTaskTest {
 
     @Test
     fun `completeTask updates status and approval state`() = runTest {
-        stubSyncDao()
+        coEvery { syncDao.upsertEvent(any()) } just runs
+        coEvery { syncDao.upsertQueueItem(any()) } just runs
+
         val existing = TaskEntity(
             id = "t1", title = "Task", description = "", expectedDurationMinutes = 0,
             dueTimestamp = null, rewardType = RewardType.FREE.name, rewardAmount = 0,
@@ -144,7 +142,9 @@ class RepositoryTaskTest {
     @Test
     fun `approveTask with PAID reward creates wallet credit`() = runTest {
         repository.currentRole = "PARENT"
-        stubSyncDao()
+        coEvery { syncDao.upsertEvent(any()) } just runs
+        coEvery { syncDao.upsertQueueItem(any()) } just runs
+
         val existing = TaskEntity(
             id = "t1", title = "Paid chore", description = "", expectedDurationMinutes = 10,
             dueTimestamp = null, rewardType = RewardType.PAID.name, rewardAmount = 200,
@@ -172,7 +172,9 @@ class RepositoryTaskTest {
     @Test
     fun `approveTask with TIME reward creates time bank credit`() = runTest {
         repository.currentRole = "PARENT"
-        stubSyncDao()
+        coEvery { syncDao.upsertEvent(any()) } just runs
+        coEvery { syncDao.upsertQueueItem(any()) } just runs
+
         val existing = TaskEntity(
             id = "t2", title = "Time chore", description = "", expectedDurationMinutes = 15,
             dueTimestamp = null, rewardType = RewardType.TIME.name, rewardAmount = 60,
@@ -199,7 +201,9 @@ class RepositoryTaskTest {
     @Test
     fun `approveTask with FREE reward no ledger entry`() = runTest {
         repository.currentRole = "PARENT"
-        stubSyncDao()
+        coEvery { syncDao.upsertEvent(any()) } just runs
+        coEvery { syncDao.upsertQueueItem(any()) } just runs
+
         val existing = TaskEntity(
             id = "t3", title = "Free chore", description = "", expectedDurationMinutes = 5,
             dueTimestamp = null, rewardType = RewardType.FREE.name, rewardAmount = 0,
@@ -219,7 +223,9 @@ class RepositoryTaskTest {
     @Test
     fun `rejectTask updates status and approval state`() = runTest {
         repository.currentRole = "PARENT"
-        stubSyncDao()
+        coEvery { syncDao.upsertEvent(any()) } just runs
+        coEvery { syncDao.upsertQueueItem(any()) } just runs
+
         val existing = TaskEntity(
             id = "t4", title = "Task", description = "", expectedDurationMinutes = 0,
             dueTimestamp = null, rewardType = RewardType.FREE.name, rewardAmount = 0,

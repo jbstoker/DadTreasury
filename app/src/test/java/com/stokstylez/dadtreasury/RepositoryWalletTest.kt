@@ -4,17 +4,17 @@ import com.stokstylez.dadtreasury.data.DadTreasuryRepository
 import com.stokstylez.dadtreasury.data.db.*
 import com.stokstylez.dadtreasury.domain.model.LedgerEntryType
 import com.stokstylez.dadtreasury.domain.model.Role
+import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.just
 import io.mockk.mockk
 import io.mockk.runs
 import io.mockk.slot
-import io.mockk.verify
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertFailsWith
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
@@ -69,27 +69,32 @@ class RepositoryWalletTest {
         repository = DadTreasuryRepository(db, context = null)
     }
 
-    private fun stubSyncDao() {
-        every { syncDao.upsertEvent(any()) } just runs
-        every { syncDao.upsertQueueItem(any()) } just runs
+    private suspend fun assertParentOnly(action: suspend () -> Unit) {
+        try {
+            action()
+            assertTrue("Expected IllegalArgumentException but none thrown", false)
+        } catch (e: IllegalArgumentException) {
+            assertTrue(e.message!!.contains("Only the parent"))
+        }
     }
 
     // ---- Wallet ----
 
     @Test
     fun `addWalletTransaction requires parent role`() = runTest {
-        val ex = assertFailsWith<IllegalArgumentException> {
+        assertParentOnly {
             repository.addWalletTransaction("c1", LedgerEntryType.CREDIT, 100, "test")
         }
-        assertTrue(ex.message!!.contains("Only the parent"))
     }
 
     @Test
     fun `addWalletTransaction creates transaction and enqueues sync`() = runTest {
         repository.currentRole = "PARENT"
-        stubSyncDao()
+        coEvery { syncDao.upsertEvent(any()) } just runs
+        coEvery { syncDao.upsertQueueItem(any()) } just runs
+
         val slot = slot<WalletTransactionEntity>()
-        every { walletDao.upsert(capture(slot)) } just runs
+        coEvery { walletDao.upsert(capture(slot)) } just runs
 
         repository.addWalletTransaction("c1", LedgerEntryType.CREDIT, 250, "Allowance")
 
@@ -135,18 +140,19 @@ class RepositoryWalletTest {
 
     @Test
     fun `addTimeTransaction requires parent role`() = runTest {
-        val ex = assertFailsWith<IllegalArgumentException> {
+        assertParentOnly {
             repository.addTimeTransaction("c1", LedgerEntryType.CREDIT, 30, "test")
         }
-        assertTrue(ex.message!!.contains("Only the parent"))
     }
 
     @Test
     fun `addTimeTransaction creates transaction and enqueues sync`() = runTest {
         repository.currentRole = "PARENT"
-        stubSyncDao()
+        coEvery { syncDao.upsertEvent(any()) } just runs
+        coEvery { syncDao.upsertQueueItem(any()) } just runs
+
         val slot = slot<TimeBankTransactionEntity>()
-        every { timeBankDao.upsert(capture(slot)) } just runs
+        coEvery { timeBankDao.upsert(capture(slot)) } just runs
 
         repository.addTimeTransaction("c1", LedgerEntryType.CREDIT, 30, "Chore")
 
@@ -191,9 +197,11 @@ class RepositoryWalletTest {
 
     @Test
     fun `sendMessage creates message and enqueues sync`() = runTest {
-        stubSyncDao()
+        coEvery { syncDao.upsertEvent(any()) } just runs
+        coEvery { syncDao.upsertQueueItem(any()) } just runs
+
         val slot = slot<ChatMessageEntity>()
-        every { chatDao.upsertMessage(capture(slot)) } just runs
+        coEvery { chatDao.upsertMessage(capture(slot)) } just runs
 
         repository.sendMessage("th1", Role.CHILD, "Done!")
 
@@ -243,18 +251,19 @@ class RepositoryWalletTest {
 
     @Test
     fun `addCalendarEvent requires parent role`() = runTest {
-        val ex = assertFailsWith<IllegalArgumentException> {
+        assertParentOnly {
             repository.addCalendarEvent("Event", "", 100L, 200L)
         }
-        assertTrue(ex.message!!.contains("Only the parent"))
     }
 
     @Test
     fun `addCalendarEvent creates event and enqueues sync`() = runTest {
         repository.currentRole = "PARENT"
-        stubSyncDao()
+        coEvery { syncDao.upsertEvent(any()) } just runs
+        coEvery { syncDao.upsertQueueItem(any()) } just runs
+
         val slot = slot<CalendarEventEntity>()
-        every { calendarDao.upsert(capture(slot)) } just runs
+        coEvery { calendarDao.upsert(capture(slot)) } just runs
 
         repository.addCalendarEvent(
             title = "Soccer",
@@ -299,17 +308,16 @@ class RepositoryWalletTest {
 
     @Test
     fun `addCategory requires parent role`() = runTest {
-        val ex = assertFailsWith<IllegalArgumentException> {
+        assertParentOnly {
             repository.addCategory("Chores")
         }
-        assertTrue(ex.message!!.contains("Only the parent"))
     }
 
     @Test
     fun `addCategory creates category`() = runTest {
         repository.currentRole = "PARENT"
         val slot = slot<LibraryCategoryEntity>()
-        every { libraryDao.upsertCategory(capture(slot)) } just runs
+        coEvery { libraryDao.upsertCategory(capture(slot)) } just runs
 
         repository.addCategory("Chores")
 
@@ -319,18 +327,19 @@ class RepositoryWalletTest {
 
     @Test
     fun `addPage requires parent role`() = runTest {
-        val ex = assertFailsWith<IllegalArgumentException> {
+        assertParentOnly {
             repository.addPage("c1", "Title", "Body")
         }
-        assertTrue(ex.message!!.contains("Only the parent"))
     }
 
     @Test
     fun `addPage creates page with revision 1 and enqueues sync`() = runTest {
         repository.currentRole = "PARENT"
-        stubSyncDao()
+        coEvery { syncDao.upsertEvent(any()) } just runs
+        coEvery { syncDao.upsertQueueItem(any()) } just runs
+
         val slot = slot<LibraryPageEntity>()
-        every { libraryDao.upsertPage(capture(slot)) } just runs
+        coEvery { libraryDao.upsertPage(capture(slot)) } just runs
 
         repository.addPage("c1", "Budget", "How to budget", listOf("money", "kid"))
 
@@ -345,11 +354,12 @@ class RepositoryWalletTest {
     @Test
     fun `updatePage increments revision and creates revision entry`() = runTest {
         repository.currentRole = "PARENT"
-        stubSyncDao()
-        every { libraryDao.upsertPage(any()) } just runs
+        coEvery { syncDao.upsertEvent(any()) } just runs
+        coEvery { syncDao.upsertQueueItem(any()) } just runs
+        coEvery { libraryDao.upsertPage(any()) } just runs
 
         val revSlot = slot<LibraryRevisionEntity>()
-        every { libraryDao.upsertRevision(capture(revSlot)) } just runs
+        coEvery { libraryDao.upsertRevision(capture(revSlot)) } just runs
 
         val page = com.stokstylez.dadtreasury.domain.model.LibraryPage(
             id = "p1", categoryId = "c1", title = "Budget", body = "Updated",
