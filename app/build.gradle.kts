@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.dadtreasury"
+    namespace = "com.stokstylez.dadtreasury"
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "com.example.dadtreasury"
+        applicationId = "com.stokstylez.dadtreasury"
         minSdk = 24
         targetSdk = 37
         versionCode = 1

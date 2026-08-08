@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help us improve RetroNest
+about: Create a report to help us improve Dads Treasury
 title: '[Bug] '
 labels: bug
 assignees: ''

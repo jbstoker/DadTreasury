@@ -1,6 +1,6 @@
 # Diagnostics
 
-Diagnostics shows how the app's systems are doing — like a health check for RetroNest.
+Diagnostics shows how the app's systems are doing — like a health check for Dads Treasury.
 
 ## What It Shows
 
@@ -15,7 +15,7 @@ Diagnostics shows how the app's systems are doing — like a health check for Re
 
 ## Sync Queue
 
-RetroNest uses event-based sync. When something changes (task created, reward credited), a **sync event** is queued locally.
+Dads Treasury uses event-based sync. When something changes (task created, reward credited), a **sync event** is queued locally.
 
 - Pending events are stored offline
 - They wait for a transport (Meshtastic/Bluetooth) to become available

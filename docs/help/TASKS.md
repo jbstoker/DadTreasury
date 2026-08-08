@@ -1,6 +1,6 @@
 # Tasks
 
-Tasks are the heart of RetroNest. A parent creates a task, the child completes it, and the parent approves it — which creates the reward.
+Tasks are the heart of Dads Treasury. A parent creates a task, the child completes it, and the parent approves it — which creates the reward.
 
 ## Lifecycle
 

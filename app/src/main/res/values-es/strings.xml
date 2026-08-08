@@ -16,14 +16,14 @@
     <string name="action_back">Atrás</string>
 
     <!-- Onboarding -->
-    <string name="onboarding_title">🌿 RetroNest</string>
+    <string name="onboarding_title">🌿 Dads Treasury</string>
     <string name="onboarding_who">¿Quién usará este dispositivo?</string>
     <string name="onboarding_parent">👨 Padre</string>
     <string name="onboarding_child">🧒 Hijo</string>
     <string name="onboarding_name_title">¿Cómo te llamamos?</string>
     <string name="onboarding_name_hint">Tu nombre</string>
     <string name="onboarding_name_required">Introduce tu nombre</string>
-    <string name="onboarding_start">Empezar con RetroNest</string>
+    <string name="onboarding_start">Empezar con Dads Treasury</string>
 
     <!-- Bottom nav -->
     <string name="nav_home">Inicio</string>

@@ -16,14 +16,14 @@
     <string name="action_back">Werom</string>
 
     <!-- Onboarding -->
-    <string name="onboarding_title">🌿 RetroNest</string>
+    <string name="onboarding_title">🌿 Dads Treasury</string>
     <string name="onboarding_who">Wa brûkt dit apparaat?</string>
     <string name="onboarding_parent">👨 Alden</string>
     <string name="onboarding_child">🧒 Bern</string>
     <string name="onboarding_name_title">Hoe sille wy dy neame?</string>
     <string name="onboarding_name_hint">Jo namme</string>
     <string name="onboarding_name_required">Folje jo namme yn</string>
-    <string name="onboarding_start">Start mei RetroNest</string>
+    <string name="onboarding_start">Start mei Dads Treasury</string>
 
     <!-- Bottom nav -->
     <string name="nav_home">Thús</string>

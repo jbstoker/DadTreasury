@@ -16,14 +16,14 @@
     <string name="action_back">返回</string>
 
     <!-- Onboarding -->
-    <string name="onboarding_title">🌿 RetroNest</string>
+    <string name="onboarding_title">🌿 Dads Treasury</string>
     <string name="onboarding_who">谁将使用这台设备？</string>
     <string name="onboarding_parent">👨 家长</string>
     <string name="onboarding_child">🧒 孩子</string>
     <string name="onboarding_name_title">我们该怎么称呼你？</string>
     <string name="onboarding_name_hint">你的名字</string>
     <string name="onboarding_name_required">请输入你的名字</string>
-    <string name="onboarding_start">开始使用 RetroNest</string>
+    <string name="onboarding_start">开始使用 Dads Treasury</string>
 
     <!-- Bottom nav -->
     <string name="nav_home">首页</string>

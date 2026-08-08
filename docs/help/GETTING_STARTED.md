@@ -1,15 +1,15 @@
 # Getting Started & Roles
 
-RetroNest is a private, offline-first household coordination app for parents and children.
+Dads Treasury is a private, offline-first household coordination app for parents and children.
 
 ## First Launch
 
-1. Tap 🌿 **RetroNest** to open the app
+1. Tap 🌿 **Dads Treasury** to open the app
 2. Choose your role:
    - 👨 **Parent** — manage tasks, rewards, calendar, pairing
    - 🧒 **Child** — see tasks, wallet, calendar, chat
 3. Enter your name
-4. Tap **Start using RetroNest**
+4. Tap **Start using Dads Treasury**
 
 ## Parent vs Child
 

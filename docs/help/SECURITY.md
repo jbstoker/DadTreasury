@@ -1,6 +1,6 @@
 # Security & PIN Lock
 
-RetroNest keeps your family data private and secure — by default, on your device, not in the cloud.
+Dads Treasury keeps your family data private and secure — by default, on your device, not in the cloud.
 
 ## What's Protected
 
@@ -37,7 +37,7 @@ Protect quick access to the app with a 4-8 digit PIN.
 
 ## Screenshot Blocking
 
-RetroNest uses `FLAG_SECURE`, which prevents:
+Dads Treasury uses `FLAG_SECURE`, which prevents:
 - Screenshots
 - Screen recording
 - App appearance in recent-apps thumbnails

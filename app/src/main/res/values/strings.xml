@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- App -->
-    <string name="app_name">Dad Treasury</string>
+    <string name="app_name">Dad\'s Treasury</string>
     <string name="app_tagline">A calm, private family hub</string>
 
     <!-- Common actions -->
@@ -16,14 +16,14 @@
     <string name="action_back">Back</string>
 
     <!-- Onboarding -->
-    <string name="onboarding_title">🌿 RetroNest</string>
+    <string name="onboarding_title">🌿 Dad\'s Treasury</string>
     <string name="onboarding_who">Who will use this device?</string>
     <string name="onboarding_parent">👨 Parent</string>
     <string name="onboarding_child">🧒 Child</string>
     <string name="onboarding_name_title">What should we call you?</string>
     <string name="onboarding_name_hint">Your name</string>
     <string name="onboarding_name_required">Please enter your name</string>
-    <string name="onboarding_start">Start using RetroNest</string>
+    <string name="onboarding_start">Start using Dad\'s Treasury</string>
 
     <!-- Bottom nav -->
     <string name="nav_home">Home</string>

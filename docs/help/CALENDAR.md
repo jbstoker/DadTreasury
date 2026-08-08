@@ -1,6 +1,6 @@
 # Calendar & Nature Date
 
-RetroNest shows **two calendars at once**: the familiar Gregorian calendar and the unique Natural 13-Month calendar.
+Dads Treasury shows **two calendars at once**: the familiar Gregorian calendar and the unique Natural 13-Month calendar.
 
 ## Gregorian Calendar
 
@@ -34,7 +34,7 @@ The natural date is automatically derived from the real date — no need to calc
 
 ## Reminders
 
-When you set a reminder, RetroNest schedules a local notification using the system alarm. It works offline and without internet.
+When you set a reminder, Dads Treasury schedules a local notification using the system alarm. It works offline and without internet.
 
 - Works when the app is closed
 - Uses AlarmManager (no cloud needed)

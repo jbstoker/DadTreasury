@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 #### Core App
-- Offline-first, privacy-first household coordination app (RetroNest)
+- Offline-first, privacy-first household coordination app (Dads Treasury)
 - Parent/child role selection at onboarding
 - Encrypted local database using SQLCipher with device-bound key in EncryptedSharedPreferences
 - PIN lock for quick access (4-8 digits, PBKDF2-HMAC-SHA256 hash, 5-attempt lockout)

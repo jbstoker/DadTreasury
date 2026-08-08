@@ -4,7 +4,7 @@ The Settings screen controls how the app looks, feels, and protects your family.
 
 ## Themes
 
-RetroNest ships with 4 themes — all designed for accessibility and calm.
+Dads Treasury ships with 4 themes — all designed for accessibility and calm.
 
 | Theme | Look |
 |-------|------|
@@ -38,6 +38,6 @@ Slide to scale text from 80% to 150%.
 ## About
 
 Shows:
-- App name 🌿 RetroNest
+- App name 🌿 Dads Treasury
 - Version number
 - Offline-first tagline

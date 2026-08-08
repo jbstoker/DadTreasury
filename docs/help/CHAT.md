@@ -1,6 +1,6 @@
 # Chat
 
-RetroNest includes secure, private parent-child messaging — fully offline.
+Dads Treasury includes secure, private parent-child messaging — fully offline.
 
 ## Opening Chat
 

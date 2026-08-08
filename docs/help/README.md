@@ -1,6 +1,6 @@
-# RetroNest Help Center
+# Dads Treasury Help Center
 
-Welcome to the RetroNest user manual.
+Welcome to the Dads Treasury user manual.
 
 This guide explains every part of the app. Choose a topic below.
 

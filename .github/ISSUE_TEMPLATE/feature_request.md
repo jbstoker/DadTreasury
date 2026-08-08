@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea for RetroNest
+about: Suggest an idea for Dads Treasury
 title: '[Feature] '
 labels: enhancement
 assignees: ''
@@ -13,7 +13,7 @@ A clear and concise description of what the problem is. Ex. I'm always frustrate
 A clear and concise description of what you want to happen.
 
 **Offline-first check**
-Please consider how this fits RetroNest's principles:
+Please consider how this fits Dads Treasury's principles:
 - [ ] Works fully offline (no cloud requirement)
 - [ ] Works without Google Play Services
 - [ ] Preserves privacy (no third-party tracking)

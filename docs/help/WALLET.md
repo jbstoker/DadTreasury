@@ -1,6 +1,6 @@
 # Wallet & Time Bank
 
-RetroNest keeps a secure ledger of all rewards — no unsafe single-number balance.
+Dads Treasury keeps a secure ledger of all rewards — no unsafe single-number balance.
 
 ## Two Balances
 
@@ -10,7 +10,7 @@ RetroNest keeps a secure ledger of all rewards — no unsafe single-number balan
 
 ## What's a Ledger?
 
-Instead of storing just "€5.00", RetroNest stores **every transaction**:
+Instead of storing just "€5.00", Dads Treasury stores **every transaction**:
 - ✓ credit (reward)
 - ✗ debit (spent)
 - 💵 payout

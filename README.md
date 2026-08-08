@@ -1,6 +1,6 @@
-# RetroNest
+# Dads Treasury
 
-RetroNest is a private, offline-first Android app for parent/child household coordination.
+Dads Treasury is a private, offline-first Android app for parent/child household coordination.
 
 It is designed to be:
 - Android compatible, including older phones
@@ -30,7 +30,7 @@ It is designed to be:
 
 ## Design goals
 
-RetroNest is built around these principles:
+Dads Treasury is built around these principles:
 
 - offline-first
 - privacy-first
