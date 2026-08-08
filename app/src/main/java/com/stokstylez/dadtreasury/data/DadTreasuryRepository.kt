@@ -18,6 +18,17 @@ class DadTreasuryRepository(
     private val db: AppDatabase,
     private val context: Context? = null,
 ) {
+    /**
+     * Current app role (PARENT or CHILD) - used for defense-in-depth gating
+     * of parent-only write operations. Set from MainActivity when role changes.
+     */
+    var currentRole: String? = null
+
+    private fun requireParent() {
+        require(currentRole == "PARENT") {
+            "Only the parent can perform this action"
+        }
+    }
     private val taskDao = db.taskDao()
     private val walletDao = db.walletDao()
     private val timeBankDao = db.timeBankDao()
@@ -47,6 +58,7 @@ class DadTreasuryRepository(
         notes: String = "",
         checklist: List<String> = emptyList(),
     ) {
+        requireParent()
         val now = System.currentTimeMillis()
         val task = Task(
             id = UUID.randomUUID().toString(),
@@ -81,6 +93,7 @@ class DadTreasuryRepository(
 
     /** Parent approves a completed task - reward is created immediately per spec §7.5. */
     suspend fun approveTask(taskId: String, childId: String) {
+        requireParent()
         val task = taskDao.getById(taskId) ?: return
         val now = System.currentTimeMillis()
 
@@ -139,6 +152,7 @@ class DadTreasuryRepository(
 
     /** Parent rejects a completed task. */
     suspend fun rejectTask(taskId: String) {
+        requireParent()
         val task = taskDao.getById(taskId) ?: return
         taskDao.upsert(
             task.copy(
@@ -151,6 +165,7 @@ class DadTreasuryRepository(
     }
 
     suspend fun deleteTask(taskId: String) {
+        requireParent()
         taskDao.deleteById(taskId)
     }
 
@@ -167,6 +182,7 @@ class DadTreasuryRepository(
         amountCents: Long,
         note: String,
     ) {
+        requireParent()
         val tx = WalletTransaction(
             id = UUID.randomUUID().toString(),
             childId = childId,
@@ -196,6 +212,7 @@ class DadTreasuryRepository(
         amountMinutes: Long,
         note: String,
     ) {
+        requireParent()
         val tx = TimeBankTransaction(
             id = UUID.randomUUID().toString(),
             childId = childId,
@@ -244,6 +261,7 @@ class DadTreasuryRepository(
         recurrenceRule: String? = null,
         reminderMinutes: Int? = null,
     ) {
+        requireParent()
         val event = CalendarEvent(
             id = UUID.randomUUID().toString(),
             title = title,
@@ -276,6 +294,7 @@ class DadTreasuryRepository(
     }
 
     suspend fun deleteCalendarEvent(eventId: String) {
+        requireParent()
         calendarDao.deleteById(eventId)
     }
 
@@ -293,6 +312,7 @@ class DadTreasuryRepository(
         activeEndHour: Int,
         taskId: String? = null,
     ) {
+        requireParent()
         val rule = GeoRule(
             id = UUID.randomUUID().toString(),
             title = title,
@@ -325,6 +345,7 @@ class DadTreasuryRepository(
     }
 
     suspend fun deleteGeoRule(ruleId: String) {
+        requireParent()
         context?.let { ProximityAlertManager.removeProximityAlert(it, ruleId) }
         geoRuleDao.deleteById(ruleId)
     }
@@ -337,6 +358,7 @@ class DadTreasuryRepository(
         libraryDao.observePages().map { list -> list.map { it.toDomain() } }
 
     suspend fun addCategory(name: String) {
+        requireParent()
         val category = LibraryCategory(
             id = UUID.randomUUID().toString(),
             name = name,
@@ -346,6 +368,7 @@ class DadTreasuryRepository(
     }
 
     suspend fun addPage(categoryId: String, title: String, body: String, tags: List<String> = emptyList()) {
+        requireParent()
         val now = System.currentTimeMillis()
         val page = LibraryPage(
             id = UUID.randomUUID().toString(),
@@ -362,6 +385,7 @@ class DadTreasuryRepository(
     }
 
     suspend fun updatePage(page: LibraryPage, note: String = "") {
+        requireParent()
         val updated = page.copy(
             revision = page.revision + 1,
             updatedAt = System.currentTimeMillis(),
@@ -404,6 +428,7 @@ class DadTreasuryRepository(
         }
 
     suspend fun createHousehold(name: String) {
+        requireParent()
         householdDao.upsertHousehold(
             HouseholdEntity(
                 id = UUID.randomUUID().toString(),
@@ -414,6 +439,7 @@ class DadTreasuryRepository(
     }
 
     suspend fun addChild(householdId: String, parentId: String, displayName: String, deviceId: String) {
+        requireParent()
         householdDao.upsertChild(
             ChildEntity(
                 id = UUID.randomUUID().toString(),
@@ -432,10 +458,12 @@ class DadTreasuryRepository(
         deviceDao.observeAll().map { list -> list.map { it.toDomain() } }
 
     suspend fun addDevice(device: DeviceIdentity) {
+        requireParent()
         deviceDao.upsert(device.toEntity())
     }
 
     suspend fun revokeDevice(deviceId: String) {
+        requireParent()
         val device = deviceDao.getById(deviceId) ?: return
         deviceDao.upsert(
             device.copy(
@@ -452,6 +480,7 @@ class DadTreasuryRepository(
         appConnectionDao.observeAll().map { list -> list.map { it.toDomain() } }
 
     suspend fun createAppConnection(displayName: String): String {
+        requireParent()
         val id = UUID.randomUUID().toString()
         val pairingCode = generatePairingCode()
         appConnectionDao.upsert(
@@ -471,6 +500,7 @@ class DadTreasuryRepository(
     }
 
     suspend fun acceptAppConnection(pairingCode: String, myDisplayName: String) {
+        requireParent()
         // This device accepts a pairing code generated by another parent app.
         // Create (or reuse) a connection record keyed to that code.
         val existing = appConnectionDao.getByPairingCode(pairingCode)
@@ -489,6 +519,7 @@ class DadTreasuryRepository(
     }
 
     suspend fun disconnectAppConnection(connectionId: String) {
+        requireParent()
         val conn = appConnectionDao.getById(connectionId) ?: return
         appConnectionDao.upsert(
             conn.copy(
@@ -501,6 +532,7 @@ class DadTreasuryRepository(
     }
 
     suspend fun shareLibraryPage(connectionId: String, pageId: String) {
+        requireParent()
         sharedLibraryPageDao.upsert(
             SharedLibraryPageEntity(
                 id = UUID.randomUUID().toString(),
@@ -517,6 +549,7 @@ class DadTreasuryRepository(
     }
 
     suspend fun sendParentMessage(connectionId: String, text: String) {
+        requireParent()
         chatDao.upsertMessage(
             ChatMessageEntity(
                 id = UUID.randomUUID().toString(),

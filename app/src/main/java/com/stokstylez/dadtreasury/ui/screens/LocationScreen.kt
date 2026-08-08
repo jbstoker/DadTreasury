@@ -26,10 +26,11 @@ import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LocationScreen(repository: DadTreasuryRepository) {
+fun LocationScreen(repository: DadTreasuryRepository, role: String? = null) {
     val tokens = LocalSemanticTokens.current
     val rules by repository.observeGeoRules().collectAsState(initial = emptyList())
     val scope = rememberCoroutineScope()
+    val isParent = role == "PARENT"
     var showDialog by remember { mutableStateOf(false) }
 
     Scaffold(
@@ -39,8 +40,10 @@ fun LocationScreen(repository: DadTreasuryRepository) {
                 title = { Text("Location Rules", color = tokens.textPrimary) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = tokens.surface),
                 actions = {
-                    IconButton(onClick = { showDialog = true }) {
-                        Icon(Icons.Filled.Add, contentDescription = "Add location rule", tint = tokens.accentPrimary)
+                    if (isParent) {
+                        IconButton(onClick = { showDialog = true }) {
+                            Icon(Icons.Filled.Add, contentDescription = "Add location rule", tint = tokens.accentPrimary)
+                        }
                     }
                 },
             )

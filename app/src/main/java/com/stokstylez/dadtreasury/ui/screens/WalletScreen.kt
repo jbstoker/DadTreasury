@@ -21,7 +21,7 @@ import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun WalletScreen(repository: DadTreasuryRepository) {
+fun WalletScreen(repository: DadTreasuryRepository, role: String? = null) {
     val tokens = LocalSemanticTokens.current
     // Using "child-1" as the default child for this prototype
     val walletTx by repository.observeWallet("child-1").collectAsState(initial = emptyList())
@@ -29,6 +29,7 @@ fun WalletScreen(repository: DadTreasuryRepository) {
     val walletBalanceCents by repository.observeWalletBalance("child-1").collectAsState(initial = 0L)
     val timeBalanceMinutes by repository.observeTimeBankBalance("child-1").collectAsState(initial = 0L)
     val scope = rememberCoroutineScope()
+    val isParent = role == "PARENT"
 
     var showWalletDialog by remember { mutableStateOf(false) }
     var showTimeDialog by remember { mutableStateOf(false) }
@@ -40,11 +41,13 @@ fun WalletScreen(repository: DadTreasuryRepository) {
                 title = { Text("Wallet & Time Bank", color = tokens.textPrimary) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = tokens.surface),
                 actions = {
-                    IconButton(onClick = { showWalletDialog = true }) {
-                        Icon(Icons.Filled.Add, contentDescription = "Add wallet tx", tint = tokens.accentPrimary)
-                    }
-                    IconButton(onClick = { showTimeDialog = true }) {
-                        Icon(Icons.Filled.Add, contentDescription = "Add time tx", tint = tokens.success)
+                    if (isParent) {
+                        IconButton(onClick = { showWalletDialog = true }) {
+                            Icon(Icons.Filled.Add, contentDescription = "Add wallet tx", tint = tokens.accentPrimary)
+                        }
+                        IconButton(onClick = { showTimeDialog = true }) {
+                            Icon(Icons.Filled.Add, contentDescription = "Add time tx", tint = tokens.success)
+                        }
                     }
                 },
             )

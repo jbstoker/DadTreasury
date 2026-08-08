@@ -64,6 +64,9 @@ class MainActivity : ComponentActivity() {
             }
 
             val role by settingsRepository.role.collectAsState(initial = null)
+            LaunchedEffect(role) {
+                repository.currentRole = role?.name
+            }
             val theme by settingsRepository.theme.collectAsState(initial = com.stokstylez.dadtreasury.ui.theme.ThemeChoice.RETRO_FUTURIST)
             val calmMode by settingsRepository.calmMode.collectAsState(initial = false)
             val reducedMotion by settingsRepository.reducedMotion.collectAsState(initial = false)

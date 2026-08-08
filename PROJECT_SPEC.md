@@ -1,8 +1,8 @@
-f my project# RetroNest Project Specification
+f my project# Dad's Treasury Project Specification
 
 ## 1. Purpose
 
-RetroNest is a private, offline-first household management app for Android.
+Dad's Treasury is a private, offline-first household management app for Android.
 
 It is designed for parent and child use, with secure local coordination of:
 - tasks

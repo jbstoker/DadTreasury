@@ -19,11 +19,12 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LibraryScreen(repository: DadTreasuryRepository) {
+fun LibraryScreen(repository: DadTreasuryRepository, role: String? = null) {
     val tokens = LocalSemanticTokens.current
     val categories by repository.observeCategories().collectAsState(initial = emptyList())
     val pages by repository.observePages().collectAsState(initial = emptyList())
     val scope = rememberCoroutineScope()
+    val isParent = role == "PARENT"
 
     var selectedCategoryId by remember { mutableStateOf<String?>(null) }
     var selectedPage by remember { mutableStateOf<LibraryPage?>(null) }
@@ -39,11 +40,13 @@ fun LibraryScreen(repository: DadTreasuryRepository) {
                 title = { Text("Library", color = tokens.textPrimary) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = tokens.surface),
                 actions = {
-                    IconButton(onClick = { showAddCategory = true }) {
-                        Icon(Icons.Filled.CreateNewFolder, contentDescription = "Add category", tint = tokens.accentPrimary)
-                    }
-                    IconButton(onClick = { showAddPage = true }) {
-                        Icon(Icons.Filled.Add, contentDescription = "Add page", tint = tokens.accentPrimary)
+                    if (isParent) {
+                        IconButton(onClick = { showAddCategory = true }) {
+                            Icon(Icons.Filled.CreateNewFolder, contentDescription = "Add category", tint = tokens.accentPrimary)
+                        }
+                        IconButton(onClick = { showAddPage = true }) {
+                            Icon(Icons.Filled.Add, contentDescription = "Add page", tint = tokens.accentPrimary)
+                        }
                     }
                 },
             )

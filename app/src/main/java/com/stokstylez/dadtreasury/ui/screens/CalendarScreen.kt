@@ -21,10 +21,11 @@ import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CalendarScreen(repository: DadTreasuryRepository) {
+fun CalendarScreen(repository: DadTreasuryRepository, role: String? = null) {
     val tokens = LocalSemanticTokens.current
     val events by repository.observeAllEvents().collectAsState(initial = emptyList())
     val scope = rememberCoroutineScope()
+    val isParent = role == "PARENT"
 
     val now = System.currentTimeMillis()
     val todayNatural = remember(now) { NatureCalendar.fromTimestamp(now) }
@@ -38,8 +39,10 @@ fun CalendarScreen(repository: DadTreasuryRepository) {
                 title = { Text("Calendar", color = tokens.textPrimary) },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = tokens.surface),
                 actions = {
-                    IconButton(onClick = { showAddDialog = true }) {
-                        Icon(Icons.Filled.Add, contentDescription = "Add event", tint = tokens.accentPrimary)
+                    if (isParent) {
+                        IconButton(onClick = { showAddDialog = true }) {
+                            Icon(Icons.Filled.Add, contentDescription = "Add event", tint = tokens.accentPrimary)
+                        }
                     }
                 },
             )

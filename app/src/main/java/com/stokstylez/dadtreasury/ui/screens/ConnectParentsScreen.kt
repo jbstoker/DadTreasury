@@ -26,7 +26,7 @@ import kotlinx.coroutines.launch
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ConnectParentsScreen(repository: DadTreasuryRepository) {
+fun ConnectParentsScreen(repository: DadTreasuryRepository, role: String? = null) {
     val tokens = LocalSemanticTokens.current
     val scope = rememberCoroutineScope()
     val connections by repository.observeAppConnections().collectAsState(initial = emptyList())

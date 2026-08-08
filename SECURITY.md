@@ -2,7 +2,7 @@
 
 ## 1. Purpose
 
-RetroNest handles sensitive household data, including:
+Dad's Treasury handles sensitive household data, including:
 - child-related tasks
 - private chat
 - calendar data
@@ -133,4 +133,4 @@ If you contribute code:
 
 ## 11. Thanks
 
-Thank you for helping keep RetroNest safe for families.
+Thank you for helping keep Dad's Treasury safe for families.

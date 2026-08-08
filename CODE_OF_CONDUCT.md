@@ -2,7 +2,7 @@
 
 ## Our Pledge
 
-We pledge to make participation in RetroNest a respectful, inclusive, and constructive experience for everyone.
+We pledge to make participation in Dad's Treasury a respectful, inclusive, and constructive experience for everyone.
 
 We welcome contributors of all backgrounds and identities.
 

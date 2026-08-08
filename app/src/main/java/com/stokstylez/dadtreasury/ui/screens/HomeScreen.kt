@@ -101,6 +101,7 @@ fun HomeScreen(
                     HomeNavItem(Routes.CALENDAR, "Calendar", Icons.Filled.DateRange),
                     HomeNavItem(Routes.CHAT, "Chat", Icons.Filled.Forum),
                     HomeNavItem(Routes.LIBRARY, "Library", Icons.AutoMirrored.Filled.MenuBook),
+                    HomeNavItem(Routes.LOCATION, "Locations", Icons.Filled.LocationOn),
                 ),
                 onNavigate = onNavigate,
             )

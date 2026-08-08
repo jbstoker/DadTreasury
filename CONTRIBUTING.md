@@ -1,6 +1,6 @@
-# Contributing to RetroNest
+# Contributing to Dad's Treasury
 
-Thanks for wanting to help improve RetroNest.
+Thanks for wanting to help improve Dad's Treasury.
 
 This project is designed to be:
 - offline-first

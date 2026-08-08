@@ -150,19 +150,19 @@ fun DadTreasuryApp(
                     )
                 }
                 composable(Routes.WALLET) {
-                    WalletScreen(repository = repository)
+                    WalletScreen(repository = repository, role = role)
                 }
                 composable(Routes.CALENDAR) {
-                    CalendarScreen(repository = repository)
+                    CalendarScreen(repository = repository, role = role)
                 }
                 composable(Routes.CHAT) {
                     ChatScreen(repository = repository, role = role)
                 }
                 composable(Routes.LIBRARY) {
-                    LibraryScreen(repository = repository)
+                    LibraryScreen(repository = repository, role = role)
                 }
                 composable(Routes.LOCATION) {
-                    LocationScreen(repository = repository)
+                    LocationScreen(repository = repository, role = role)
                 }
                 composable(Routes.PAIRING) {
                     PairingScreen(repository = repository, role = role)
@@ -171,7 +171,7 @@ fun DadTreasuryApp(
                     DiagnosticsScreen(repository = repository)
                 }
                 composable(Routes.CONNECT_PARENTS) {
-                    ConnectParentsScreen(repository = repository)
+                    ConnectParentsScreen(repository = repository, role = role)
                 }
                 composable(Routes.SETTINGS) {
                     SettingsScreen(

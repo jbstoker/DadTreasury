@@ -1,8 +1,8 @@
-hat# RetroNest Architecture
+hat# Dad's Treasury Architecture
 
 ## 1. Overview
 
-RetroNest is a modular Android application built with Kotlin and Jetpack Compose.
+Dad's Treasury is a modular Android application built with Kotlin and Jetpack Compose.
 
 The app is designed to be:
 - offline-first
