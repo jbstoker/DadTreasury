@@ -2,7 +2,8 @@
 
 <p align="center">
   <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
-  <a href="https://github.com/jbstoker/DadTreasury/actions"><img alt="Build Status" src="https://img.shields.io/github/actions/workflow/status/jbstoker/DadTreasury/android.yml?branch=main&label=Build"/></a>
+
+[//]: # (  <a href="https://github.com/jbstoker/DadTreasury/actions"><img alt="Build Status" src="https://img.shields.io/github/actions/workflow/status/jbstoker/DadTreasury/android.yml?branch=main&label=Build"/></a>)
   <a href="https://github.com/jbstoker/DadTreasury/commits/main"><img alt="Last Commit" src="https://img.shields.io/github/last-commit/jbstoker/DadTreasury"/></a>
   <a href="https://github.com/jbstoker/DadTreasury/releases"><img alt="Release" src="https://img.shields.io/github/v/release/jbstoker/DadTreasury?label=Release"/></a>
   <a href="https://github.com/jbstoker/DadTreasury/watchers"><img alt="Stars" src="https://img.shields.io/github/stars/jbstoker/DadTreasury?style=social"/></a>
