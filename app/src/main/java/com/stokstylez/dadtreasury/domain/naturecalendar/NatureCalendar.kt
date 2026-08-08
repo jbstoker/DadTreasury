@@ -25,7 +25,7 @@ data class TartarianDate(
     val activity: String,          // Seasonal Matrix Activity from schema
     val isDayOutOfTime: Boolean = false, // true for the standalone day(s)
     val dayOutOfTimeCount: Int = 0,      // 1 = normal, 2 = leap year
-    val fullLabel: String,         // "🌌 Tartarian Matrix: Month 1 - Genesis, Day 1 (Monday)"
+    val fullLabel: String,         // "🌌 Natural: Month 1 - Genesis, Day 1 (Monday)"
     val template: String,          // exact scannable output template
 )
 
@@ -111,7 +111,7 @@ object NatureCalendar {
             activity = schema.activity,
             isDayOutOfTime = false,
             dayOutOfTimeCount = 0,
-            fullLabel = "🌌 Tartarian Matrix: Month ${monthIndex + 1} - ${schema.name}, Day ${dayInMonth + 1} ($weekday)",
+            fullLabel = "🌌 Natural: Month ${monthIndex + 1} - ${schema.name}, Day ${dayInMonth + 1} ($weekday)",
             template = buildTemplate(
                 gregorian = "${dayToGregorian(matrixYear, monthIndex, dayInMonth)}",
                 month = monthIndex + 1,
@@ -134,7 +134,7 @@ object NatureCalendar {
             activity = "A calendar-free day for reflection and reset.",
             isDayOutOfTime = true,
             dayOutOfTimeCount = count,
-            fullLabel = "🌌 Tartarian Matrix: The Day Out of Time ($dayOutOfTimeIndex of $count)",
+            fullLabel = "🌌 Natural: The Day Out of Time ($dayOutOfTimeIndex of $count)",
             template = """
                 ### 🌌 TARTARIAN CALENDAR CONVERSION
                 * **Gregorian Input:** ${gregorianForDayOutOfTime(matrixYear, dayOutOfTimeIndex)}

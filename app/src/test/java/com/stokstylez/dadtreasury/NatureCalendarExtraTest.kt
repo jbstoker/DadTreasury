@@ -57,7 +57,7 @@ class NatureCalendarExtraTest {
     fun `full label format matches expectation`() {
         val tart = NatureCalendar.fromGregorian(LocalDate.of(2026, 3, 20))
         assertEquals(
-            "🌌 Tartarian Matrix: Month 1 - Genesis, Day 1 (Monday)",
+            "🌌 Natural: Month 1 - Genesis, Day 1 (Monday)",
             tart.fullLabel,
         )
     }
@@ -66,7 +66,7 @@ class NatureCalendarExtraTest {
     fun `day out of time full label`() {
         val tart = NatureCalendar.fromGregorian(LocalDate.of(2026, 3, 19))
         assertEquals(
-            "🌌 Tartarian Matrix: The Day Out of Time (1 of 1)",
+            "🌌 Natural: The Day Out of Time (1 of 1)",
             tart.fullLabel,
         )
     }
