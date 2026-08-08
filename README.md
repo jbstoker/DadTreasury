@@ -129,9 +129,7 @@ The first implementation goals should be:
 
 ## Documentation & Wiki
 
-Visit the **GitHub Wiki** for the full user manual:
-
-> 🔗 https://github.com/jbstoker/DadTreasury/wiki
+The full user manual is available in the **`docs/wiki/`** folder:
 
 | Topic | Wiki Page |
 |-------|-----------|
@@ -149,23 +147,22 @@ Visit the **GitHub Wiki** for the full user manual:
 | 🛠️ Diagnostics | [Diagnostics](docs/wiki/Diagnostics.md) |
 | 📋 Changelog | [Changelog](docs/wiki/Changelog.md) |
 
-> 💡 The `docs/wiki/` folder contains **wiki-ready Markdown** — simply copy these files into your GitHub wiki (see [UPLOAD_TO_GITHUB_WIKI.md](docs/wiki/UPLOAD_TO_GITHUB_WIKI.md)).
-
 ## 🤖 AI Contributor
 
-This project has been developed with the help of **Claude** (Anthropic's AI assistant), working alongside the repository's human maintainers.
+This project has been developed with the help of **Cline** (an AI coding assistant powered by DeepSeek), working alongside the repository's human maintainers.
 
-> **Claude** is an AI software engineering assistant that contributed directly to this codebase — implementing features, fixing bugs, writing documentation, and preparing release builds.
+> **Cline** is an AI software engineering assistant that contributed directly to this codebase — implementing features, fixing bugs, writing documentation, and preparing release builds.
 
-### Contributions made by Claude include:
+### Contributions made by Cline include:
 
 - 🔗 **Parent App Connections** — connect two parent apps to share the family wiki and message each other
 - ⏰ **Google Family Link integration** — screen-time grants when Time tasks are approved
 - 🔒 **Role-based permission enforcement** — UI + data-layer gating so children can't modify tasks/wallet/wiki
 - 📱 **New app icon integration** — applied the custom icon pack from appicon.co
 - 🔧 **16 KB page-alignment fix** — made the APK compatible with 16 KB page-size devices
-- 📚 **GitHub Wiki** — full user documentation, styled + published with hardlink sync
+- 📚 **Wiki documentation** — full user documentation maintained in `docs/wiki/`
 - 📦 **First release APK** — built and signed **v1.0.1.1**
+- 🧪 **Test coverage** — expanded unit tests from 16 to 123 tests covering domain logic, data mappers, and the repository layer
 
 ## License
 
