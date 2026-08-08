@@ -16,15 +16,17 @@ This guide explains every part of the app. Choose a topic below.
 - [Tasks](TASKS.md) — create, complete, approve, photos
 - [Wallet & Time Bank](WALLET.md) — ledger, rewards, balances
 - [Calendar & Nature Date](CALENDAR.md) — events, reminders, dual display
-- [Chat](CHAT.md) — secure parent-child messaging
-- [Library](LIBRARY.md) — offline wiki and knowledge base
+- [Chat](CHAT.md) — secure parent-child messaging, parent-to-parent
+- [Library](LIBRARY.md) — offline wiki, rich text, images, XML import/export
+- [My Boundaries & Choices](BOUNDARIES.md) — step-by-step boundary wizard
+- [SOS Button](SOS.md) — quick alerts with location
 
 ## Advanced
 
-- [Location Rules](LOCATION.md) — proximity alerts, geo rules
+- [Location Rules](LOCATION.md) — proximity alerts, geo rules, map picker
 - [Device Pairing](PAIRING.md) — add, trust, revoke devices
 - [Security & PIN Lock](SECURITY.md) — protect the app
-- [Settings](SETTINGS.md) — themes, accessibility
+- [Settings](SETTINGS.md) — themes, accessibility, language
 - [Diagnostics](DIAGNOSTICS.md) — sync queue, system health
 
 ## Reference

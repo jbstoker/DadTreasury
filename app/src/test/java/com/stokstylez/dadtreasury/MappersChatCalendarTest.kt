@@ -186,6 +186,7 @@ class MappersChatCalendarTest {
             repeatDaily = true,
             isEnabled = true,
             taskId = "t1",
+            targetRole = "CHILD",
             createdAt = 999L,
         )
 

@@ -16,6 +16,8 @@
 - [📅 Calendar](Calendar)
 - [💬 Chat](Chat)
 - [📖 Library](Library)
+- [🌈 My Boundaries & Choices](Boundaries)
+- [🆘 SOS Button](SOS)
 
 ---
 

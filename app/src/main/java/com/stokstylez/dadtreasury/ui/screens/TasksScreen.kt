@@ -29,6 +29,7 @@ fun TasksScreen(
 ) {
     val tokens = LocalSemanticTokens.current
     val tasks by repository.observeTasks().collectAsState(initial = emptyList())
+    val children by repository.observeChildren().collectAsState(initial = emptyList())
     val scope = rememberCoroutineScope()
     val isParent = role == "PARENT"
 
@@ -90,6 +91,16 @@ fun TasksScreen(
                                     Text(it, style = MaterialTheme.typography.bodyMedium, color = tokens.textSecondary)
                                 }
                             }
+                            // Show assigned child (if any)
+                            task.childId?.let { childId ->
+                                val childName = children.find { it.id == childId }?.displayName ?: childId
+                                Spacer(Modifier.height(4.dp))
+                                Text(
+                                    "🧒 Assigned: $childName",
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = tokens.accentPrimary,
+                                )
+                            }
                             task.dueTimestamp?.let { ts ->
                                 Spacer(Modifier.height(4.dp))
                                 Text(
@@ -127,8 +138,9 @@ fun TasksScreen(
 
     if (showCreateDialog) {
         CreateTaskDialog(
+            children = children,
             onDismiss = { showCreateDialog = false },
-            onSave = { title, desc, minutes, rewardType, rewardAmount ->
+            onSave = { title, desc, minutes, rewardType, rewardAmount, childId ->
                 scope.launch {
                     repository.createTask(
                         title = title,
@@ -136,6 +148,7 @@ fun TasksScreen(
                         expectedDurationMinutes = minutes,
                         rewardType = rewardType,
                         rewardAmount = rewardAmount,
+                        childId = childId,
                     )
                 }
                 showCreateDialog = false
@@ -165,20 +178,28 @@ fun TaskStatusBadge(status: TaskStatus, tokens: com.stokstylez.dadtreasury.ui.th
 
 @Composable
 fun CreateTaskDialog(
+    children: List<com.stokstylez.dadtreasury.domain.model.ChildProfile>,
     onDismiss: () -> Unit,
-    onSave: (String, String, Int, RewardType, Long) -> Unit,
+    onSave: (String, String, Int, RewardType, Long, String?) -> Unit,
 ) {
     var title by remember { mutableStateOf("") }
     var description by remember { mutableStateOf("") }
     var durationMinutes by remember { mutableStateOf("") }
     var rewardType by remember { mutableStateOf(RewardType.FREE) }
     var rewardAmount by remember { mutableStateOf("") }
+    var selectedChildId by remember { mutableStateOf(children.firstOrNull()?.id) }
 
     AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text("New Task") },
         text = {
-            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .verticalScroll(rememberScrollState())
+                    .heightIn(max = 500.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
                 OutlinedTextField(
                     value = title,
                     onValueChange = { title = it },
@@ -197,7 +218,22 @@ fun CreateTaskDialog(
                     label = { Text("Expected duration (min)") },
                     modifier = Modifier.fillMaxWidth(),
                 )
-                Text("Reward type")
+
+                // Child selector (only if multiple children exist)
+                if (children.size > 1) {
+                    Text("Assign to child", style = MaterialTheme.typography.labelMedium, color = LocalSemanticTokens.current.textSecondary)
+                    Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                        children.forEach { child ->
+                            FilterChip(
+                                selected = selectedChildId == child.id,
+                                onClick = { selectedChildId = child.id },
+                                label = { Text("🧒 ${child.displayName}") },
+                            )
+                        }
+                    }
+                }
+
+                Text("Reward type", style = MaterialTheme.typography.labelMedium, color = LocalSemanticTokens.current.textSecondary)
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     RewardType.entries.forEach { type ->
                         FilterChip(
@@ -227,6 +263,7 @@ fun CreateTaskDialog(
                             durationMinutes.toIntOrNull() ?: 0,
                             rewardType,
                             rewardAmount.toLongOrNull() ?: 0,
+                            selectedChildId,
                         )
                     }
                 },

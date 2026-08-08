@@ -2,6 +2,7 @@ package com.stokstylez.dadtreasury
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
@@ -17,11 +18,13 @@ import com.stokstylez.dadtreasury.data.DadTreasuryRepository
 import com.stokstylez.dadtreasury.data.SettingsRepository
 import com.stokstylez.dadtreasury.data.db.AppDatabase
 import com.stokstylez.dadtreasury.security.PinLockManager
+import com.stokstylez.dadtreasury.domain.model.Language
 import com.stokstylez.dadtreasury.ui.DadTreasuryApp
 import com.stokstylez.dadtreasury.ui.screens.PinLockScreen
 import com.stokstylez.dadtreasury.ui.theme.AppSettingsState
 import com.stokstylez.dadtreasury.ui.theme.DadTreasuryTheme
 import com.stokstylez.dadtreasury.ui.theme.LocalAppSettings
+import java.util.Locale
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,15 +75,41 @@ class MainActivity : ComponentActivity() {
             val reducedMotion by settingsRepository.reducedMotion.collectAsState(initial = false)
             val highContrast by settingsRepository.highContrast.collectAsState(initial = false)
             val textScale by settingsRepository.textScale.collectAsState(initial = 1.0f)
+            val language by settingsRepository.language.collectAsState(initial = Language.SYSTEM_DEFAULT)
             val onboardingDone by settingsRepository.onboardingDone.collectAsState(initial = false)
 
-            LaunchedEffect(role, theme, calmMode, reducedMotion, highContrast, textScale) {
+            LaunchedEffect(role, theme, calmMode, reducedMotion, highContrast, textScale, language) {
                 appSettings.role = role?.name
                 appSettings.theme = theme
                 appSettings.calmMode = calmMode
                 appSettings.reducedMotion = reducedMotion
                 appSettings.highContrast = highContrast
                 appSettings.textScale = textScale
+                appSettings.language = language
+            }
+
+            // Apply locale to the activity context when the user changes language.
+            // We call recreate() so Compose fully rebuilds with the new locale resources.
+            var lastAppliedLocale by remember { mutableStateOf<String?>(null) }
+            LaunchedEffect(language, lastAppliedLocale) {
+                if (lastAppliedLocale == language.name) return@LaunchedEffect
+                lastAppliedLocale = language.name
+                val locale = language.localeTag?.let { Locale(it) } ?: Locale.getDefault()
+                Locale.setDefault(locale)
+                val config = Configuration(resources.configuration)
+                config.setLocale(locale)
+                @Suppress("DEPRECATION")
+                resources.updateConfiguration(config, resources.displayMetrics)
+                // Also update application context so future inflation uses the locale
+                val appContext = context.applicationContext
+                val appConfig = Configuration(appContext.resources.configuration)
+                appConfig.setLocale(locale)
+                @Suppress("DEPRECATION")
+                appContext.resources.updateConfiguration(appConfig, appContext.resources.displayMetrics)
+                // Force a full recreation so ALL views (nav bar, screens) rebuild with
+                // the selected language's resource strings.
+                kotlinx.coroutines.delay(200)
+                recreate()
             }
 
             CompositionLocalProvider(LocalAppSettings provides appSettings) {

@@ -9,7 +9,7 @@
   <a href="https://github.com/jbstoker/DadTreasury/watchers"><img alt="Stars" src="https://img.shields.io/github/stars/jbstoker/DadTreasury?style=social"/></a>
   <a href="https://github.com/jbstoker/DadTreasury/issues"><img alt="Issues" src="https://img.shields.io/github/issues/jbstoker/DadTreasury"/></a>
   <a href="https://github.com/jbstoker/DadTreasury/pulls"><img alt="Pull Requests" src="https://img.shields.io/github/issues-pr/jbstoker/DadTreasury"/></a>
-  <a href="#"><img alt="Coverage" src="https://img.shields.io/badge/Coverage-~90%25-brightgreen"/></a>
+  <a href="#"><img alt="Coverage" src="https://img.shields.io/badge/Coverage-~11%25-orange"/></a>
   <a href="#"><img alt="Kotlin" src="https://img.shields.io/badge/Kotlin-2.0-orange.svg"/></a>
   <a href="#"><img alt="Jetpack Compose" src="https://img.shields.io/badge/Jetpack%20Compose-✓-blueviolet"/></a>
 </p>
@@ -33,8 +33,10 @@ It is designed to be:
 - Task management with approvals
 - Wallet and time reward ledger
 - Offline calendar
-- Location-triggered messages
-- Offline library / wiki
+- Location-triggered messages with interactive map
+- Offline library / wiki with rich text and XML import/export
+- Boundary guidance wizard for neurodivergent children (My Boundaries & Choices)
+- SOS button with location pin to parent
 - Dual date display:
   - Gregorian
   - Natural 13-month calendar
@@ -140,7 +142,9 @@ The full user manual is available in the **`docs/wiki/`** folder:
 | 💬 Chat | [Chat](docs/wiki/Chat.md) |
 | 📖 Library | [Library](docs/wiki/Library.md) |
 | 📍 Location Rules | [Location Rules](docs/wiki/Location-Rules.md) |
-| 🔗 Connect Parent Apps | [Connect Parent Apps](docs/wiki/Connect-Parent-Apps.md) |
+| 🌈 Boundaries | [My Boundaries & Choices](docs/wiki/Boundaries.md) |
+| 🆘 SOS | [SOS Button](docs/wiki/SOS.md) |
+| 🔗 Connect Parents | [Connect Parent Apps](docs/wiki/Connect-Parent-Apps.md) |
 | ⏰ Google Family Link | [Google Family Link](docs/wiki/Google-Family-Link.md) |
 | 🔒 Security | [Security](docs/wiki/Security.md) |
 | ⚙️ Settings | [Settings](docs/wiki/Settings.md) |
@@ -162,7 +166,12 @@ This project has been developed with the help of **Cline** (an AI coding assista
 - 🔧 **16 KB page-alignment fix** — made the APK compatible with 16 KB page-size devices
 - 📚 **Wiki documentation** — full user documentation maintained in `docs/wiki/`
 - 📦 **First release APK** — built and signed **v1.0.1.1**
-- 🧪 **Test coverage** — expanded unit tests from 16 to 123 tests covering domain logic, data mappers, and the repository layer
+- 🧪 **Test coverage** — expanded unit tests covering domain logic, data mappers, and the repository layer
+- 🗺️ **Location map picker** — interactive osmdroid map, parent-targeted rules
+- 🌐 **Language selection** — app recreation for full localization
+- 🆘 **SOS button** — location-pinned quick alerts to parent chat
+- 🌈 **My Boundaries & Choices** — step-by-step boundary wizard for neurodivergent children
+- 📖 **Library rich text & XML import/export** — formatting toolbar, images, preview
 
 ## License
 

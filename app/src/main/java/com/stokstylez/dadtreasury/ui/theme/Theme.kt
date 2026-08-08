@@ -9,6 +9,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.unit.sp
+import com.stokstylez.dadtreasury.domain.model.Language
 
 /**
  * App settings - held at composition root so screens can react.
@@ -20,6 +22,7 @@ class AppSettingsState {
     var highContrast by mutableStateOf(false)
     var textScale by mutableStateOf(1.0f)
     var theme by mutableStateOf(ThemeChoice.RETRO_FUTURIST)
+    var language by mutableStateOf(Language.SYSTEM_DEFAULT)
 }
 
 enum class ThemeChoice {
@@ -162,8 +165,29 @@ fun DadTreasuryTheme(
     }
 
     CompositionLocalProvider(LocalSemanticTokens provides tokens) {
+        // Apply user-selected text scale to the default typography.
+        val scale = settings.textScale.coerceIn(0.8f, 1.5f)
+        val base = MaterialTheme.typography
+        val scaledTypography = base.copy(
+            displayLarge = base.displayLarge.copy(fontSize = (base.displayLarge.fontSize.value * scale).sp),
+            displayMedium = base.displayMedium.copy(fontSize = (base.displayMedium.fontSize.value * scale).sp),
+            displaySmall = base.displaySmall.copy(fontSize = (base.displaySmall.fontSize.value * scale).sp),
+            headlineLarge = base.headlineLarge.copy(fontSize = (base.headlineLarge.fontSize.value * scale).sp),
+            headlineMedium = base.headlineMedium.copy(fontSize = (base.headlineMedium.fontSize.value * scale).sp),
+            headlineSmall = base.headlineSmall.copy(fontSize = (base.headlineSmall.fontSize.value * scale).sp),
+            titleLarge = base.titleLarge.copy(fontSize = (base.titleLarge.fontSize.value * scale).sp),
+            titleMedium = base.titleMedium.copy(fontSize = (base.titleMedium.fontSize.value * scale).sp),
+            titleSmall = base.titleSmall.copy(fontSize = (base.titleSmall.fontSize.value * scale).sp),
+            bodyLarge = base.bodyLarge.copy(fontSize = (base.bodyLarge.fontSize.value * scale).sp),
+            bodyMedium = base.bodyMedium.copy(fontSize = (base.bodyMedium.fontSize.value * scale).sp),
+            bodySmall = base.bodySmall.copy(fontSize = (base.bodySmall.fontSize.value * scale).sp),
+            labelLarge = base.labelLarge.copy(fontSize = (base.labelLarge.fontSize.value * scale).sp),
+            labelMedium = base.labelMedium.copy(fontSize = (base.labelMedium.fontSize.value * scale).sp),
+            labelSmall = base.labelSmall.copy(fontSize = (base.labelSmall.fontSize.value * scale).sp),
+        )
         MaterialTheme(
             colorScheme = colorScheme,
+            typography = scaledTypography,
             content = content
         )
     }

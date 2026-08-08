@@ -159,6 +159,56 @@
     <string name="connect_parents_trusted">Trusted</string>
     <string name="connect_parents_pending">Pending</string>
 
+    <!-- My Boundaries & Choices -->
+    <string name="boundaries_title">My Boundaries &amp; Choices</string>
+    <string name="boundaries_intro">It\'s okay to set boundaries. Pick what feels right - you don\'t have to explain yourself.</string>
+    <string name="boundaries_energy_title">Energy Check</string>
+    <string name="boundaries_energy_subtitle">How is your battery right now?</string>
+    <string name="boundaries_energy_full">🟢 Full</string>
+    <string name="boundaries_energy_low">🟡 Low</string>
+    <string name="boundaries_energy_empty">🔴 Empty</string>
+    <string name="boundaries_rest_message">Your rest is important. It\'s completely okay to take a break and recharge.</string>
+    <string name="boundaries_role_title">How do you want to join?</string>
+    <string name="boundaries_role_subtitle">Watching or helping is 100% valid.</string>
+    <string name="boundaries_role_active">Active Player</string>
+    <string name="boundaries_role_helper">Behind-the-Scenes Helper</string>
+    <string name="boundaries_role_observer">Observer (Just Watching)</string>
+    <string name="boundaries_cleanup_title">Cleanup Agreement</string>
+    <string name="boundaries_cleanup_subtitle">Let\'s agree before we start.</string>
+    <string name="boundaries_cleanup_50_50">We split it 50/50</string>
+    <string name="boundaries_cleanup_dad">Dad cleans it</string>
+    <string name="boundaries_cleanup_as_we_go">We clean as we go</string>
+    <string name="boundaries_exit_title">Exit Strategy</string>
+    <string name="boundaries_exit_subtitle">How long do you want to try for?</string>
+    <string name="boundaries_exit_15min">Try for 15 minutes</string>
+    <string name="boundaries_exit_see_how">See how it goes</string>
+    <string name="boundaries_exit_skip">Skip this time</string>
+    <string name="boundaries_sensory_title">Sensory Adjustments</string>
+    <string name="boundaries_sensory_subtitle">Pick what helps.</string>
+    <string name="boundaries_sensory_headphones">🎧 Headphones On</string>
+    <string name="boundaries_sensory_dim">🕶️ Dim Lights / Sunglasses</string>
+    <string name="boundaries_sensory_door">🚪 Keep Door Open / Easy Exit</string>
+    <string name="boundaries_motivation_title">The Motivation Check</string>
+    <string name="boundaries_motivation_subtitle">Why are you joining right now?</string>
+    <string name="boundaries_motivation_want">I want to</string>
+    <string name="boundaries_motivation_others">To make others happy</string>
+    <string name="boundaries_motivation_forced">I feel forced</string>
+    <string name="boundaries_masking_message">Your comfort matters just as much as anyone else\'s. You don\'t have to change who you are to fit in.</string>
+    <string name="boundaries_script_title">Your Quick Script</string>
+    <string name="boundaries_script_copy">Copy Text</string>
+    <string name="boundaries_script_copied">Copied ✓</string>
+    <!-- Boundary script generators -->
+    <string name="boundaries_script_battery_low">My battery is low. I need to take a break, and I will join you later.</string>
+    <string name="boundaries_script_battery_empty">My battery is empty. I can\'t join right now - I need to rest first.</string>
+    <string name="boundaries_script_watch">I want to hang out, but I\'d prefer to just watch this time.</string>
+    <string name="boundaries_script_helper">I\'m happy to help behind the scenes - that counts as joining.</string>
+    <string name="boundaries_script_cleanup_half">Let\'s split the cleanup 50/50.</string>
+    <string name="boundaries_script_cleanup_dad">You handle the cleanup this time - that\'s the deal.</string>
+    <string name="boundaries_script_cleanup_flow">Let\'s clean as we go.</string>
+    <string name="boundaries_script_exit_15min">I\'ll try for 15 minutes, then check in again.</string>
+    <string name="boundaries_script_exit_see_how">Let\'s see how it goes - I\'ll let you know if I need to stop.</string>
+    <string name="boundaries_script_exit_skip">I\'d like to skip this time.</string>
+
     <!-- Google Family Link -->
     <string name="family_link_screen_time">Google Family Link Screen Time</string>
     <string name="family_link_screen_time_desc">When a child completes a TIME task, screen time is granted to their Google Family account.</string>

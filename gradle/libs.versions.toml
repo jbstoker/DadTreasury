@@ -19,6 +19,7 @@ coil = "2.7.0"
 sqlcipher = "4.5.4"
 sqlite = "2.3.1"
 mockk = "1.13.13"
+osmdroid = "6.1.18"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -64,6 +65,7 @@ androidx-security-crypto = { group = "androidx.security", name = "security-crypt
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 sqlcipher = { group = "net.zetetic", name = "android-database-sqlcipher", version.ref = "sqlcipher" }
 androidx-sqlite-ktx = { group = "androidx.sqlite", name = "sqlite-ktx", version.ref = "sqlite" }
+osmdroid = { group = "org.osmdroid", name = "osmdroid-android", version.ref = "osmdroid" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -143,6 +143,9 @@ dependencies {
     // Image loading
     implementation(libs.coil.compose)
 
+    // Maps (osmdroid - no Google Play Services required)
+    implementation(libs.osmdroid)
+
     // Testing
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)

@@ -21,6 +21,7 @@ data class Task(
     val locationRuleId: String? = null,
     val checklist: List<String> = emptyList(),
     val completionPhotoUri: String? = null, // child's photo of completed task result
+    val childId: String? = null, // which child the task is assigned to (null = any/default)
     val createdAt: Long = System.currentTimeMillis(),
     val updatedAt: Long = System.currentTimeMillis(),
 )

@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.stokstylez.dadtreasury.data.SettingsRepository
+import com.stokstylez.dadtreasury.domain.model.Language
 import com.stokstylez.dadtreasury.security.PinLockManager
 import com.stokstylez.dadtreasury.ui.theme.LocalAppSettings
 import com.stokstylez.dadtreasury.ui.theme.LocalSemanticTokens
@@ -34,6 +35,7 @@ fun SettingsScreen(
     val reducedMotion by settingsRepository.reducedMotion.collectAsState(initial = false)
     val highContrast by settingsRepository.highContrast.collectAsState(initial = false)
     val textScale by settingsRepository.textScale.collectAsState(initial = 1.0f)
+    val language by settingsRepository.language.collectAsState(initial = Language.SYSTEM_DEFAULT)
 
     Scaffold(
         containerColor = tokens.background,
@@ -152,7 +154,11 @@ fun SettingsScreen(
             Card(colors = CardDefaults.cardColors(containerColor = tokens.card), modifier = Modifier.fillMaxWidth()) {
                 Column(Modifier.padding(12.dp)) {
                     Text("Text Size", style = MaterialTheme.typography.bodyLarge, color = tokens.textPrimary)
-                    Text("${textScale.toInt()}%", style = MaterialTheme.typography.bodySmall, color = tokens.textSecondary)
+                    Text(
+                        "${(textScale * 100).toInt()}%",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = tokens.textSecondary,
+                    )
                     Slider(
                         value = textScale,
                         onValueChange = {
@@ -161,6 +167,67 @@ fun SettingsScreen(
                         valueRange = 0.8f..1.5f,
                         steps = 6,
                     )
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                        Text("80%", style = MaterialTheme.typography.labelSmall, color = tokens.textSecondary)
+                        Text("150%", style = MaterialTheme.typography.labelSmall, color = tokens.textSecondary)
+                    }
+                }
+            }
+
+            Spacer(Modifier.height(24.dp))
+
+            // Language selection
+            Text("Language", style = MaterialTheme.typography.titleMedium, color = tokens.textPrimary)
+            Spacer(Modifier.height(8.dp))
+            Card(colors = CardDefaults.cardColors(containerColor = tokens.card), modifier = Modifier.fillMaxWidth()) {
+                Column(Modifier.padding(12.dp)) {
+                    Text("App Language", style = MaterialTheme.typography.bodyLarge, color = tokens.textPrimary)
+                    Text("Choose app language", style = MaterialTheme.typography.bodySmall, color = tokens.textSecondary)
+                    Spacer(Modifier.height(8.dp))
+                    Language.entries.forEach { lang ->
+                        val selected = language == lang
+                        Card(
+                            colors = CardDefaults.cardColors(
+                                containerColor = if (selected) tokens.accentPrimary.copy(alpha = 0.2f) else tokens.card,
+                                contentColor = if (selected) tokens.accentPrimary else tokens.textPrimary,
+                            ),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 2.dp),
+                            onClick = {
+                                scope.launch { settingsRepository.setLanguage(lang) }
+                            },
+                        ) {
+                            Row(
+                                modifier = Modifier.padding(horizontal = 12.dp, vertical = 10.dp),
+                                verticalAlignment = Alignment.CenterVertically,
+                            ) {
+                                Icon(
+                                    Icons.Filled.Language,
+                                    contentDescription = null,
+                                    tint = if (selected) tokens.accentPrimary else tokens.textSecondary,
+                                )
+                                Spacer(Modifier.width(12.dp))
+                                Text(
+                                    when (lang) {
+                                        Language.SYSTEM_DEFAULT -> "🌐 System Default"
+                                        Language.ENGLISH -> "English"
+                                        Language.NEDERLANDS -> "Nederlands"
+                                        Language.DEUTSCH -> "Deutsch"
+                                        Language.ESPANOL -> "Español"
+                                        Language.FRANCAIS -> "Français"
+                                        Language.CHINESE -> "中文"
+                                        Language.FRYSLAN -> "Frysk"
+                                    },
+                                    color = tokens.textPrimary,
+                                )
+                                Spacer(Modifier.weight(1f))
+                                if (selected) {
+                                    Icon(Icons.Filled.Check, contentDescription = "Selected", tint = tokens.success)
+                                }
+                            }
+                        }
+                    }
                 }
             }
 

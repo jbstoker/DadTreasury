@@ -28,6 +28,38 @@
 #### 📍 Locations for Children
 - Children can now see **Locations** in their home nav grid
 
+#### 🗺️ Location Map Picker
+- Coordinate fields replaced with an interactive **osmdroid map** (OpenStreetMap, no Google Play Services)
+- Address search, contact picker, draggable marker, tap-to-pick
+- Location rules can notify **Child** or **Parent (personal)**
+
+#### 🌐 Language Selection
+- New **Language** section in Settings (System, English, Nederlands, Deutsch, Español, Français, 中文, Frysk)
+- App recreates fully when language changes so all localized strings are reloaded
+
+#### 💬 Chat Parent Switching
+- Parents can switch between the child and connected **parent apps** in one screen
+- Location pins render inside chat messages containing 📍 coordinates
+
+#### 📖 Library Rich Text & XML
+- Formatting toolbar (headings, bold, italic, lists, images)
+- Live preview
+- XML **import/export** of categories and pages
+
+#### 👨‍👧 Task Child Assignment
+- Tasks can be assigned to a specific child when multiple children exist
+- Child name shown on task cards; rewards credit the assigned child
+
+#### 🆘 SOS Button
+- Quick-alert screen with 5 predefined messages plus the device location
+- Big red button sends the message directly to the parent's chat with a location pin
+
+#### 🌈 My Boundaries & Choices
+- **Step-by-step wizard** (one question at a time) for neurodivergent children
+- Energy check → motivation → role comfort → practical boundaries
+- Early exits for empty battery or pressured/forced
+- Generates a **Public Text** and **Home Team Action** message with copy/send buttons
+
 ---
 
 ## [0.1.0] — 2026-08-08

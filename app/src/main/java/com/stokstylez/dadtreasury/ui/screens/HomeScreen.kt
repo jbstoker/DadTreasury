@@ -11,7 +11,9 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.stokstylez.dadtreasury.R
 import com.stokstylez.dadtreasury.data.DadTreasuryRepository
 import com.stokstylez.dadtreasury.domain.model.TaskStatus
 import com.stokstylez.dadtreasury.ui.Routes
@@ -52,7 +54,7 @@ fun HomeScreen(
             .padding(16.dp),
     ) {
         Text(
-            text = if (isParent) "📋 Parent Dashboard" else "⭐ Today",
+            text = if (isParent) stringResource(R.string.home_parent_dashboard) else stringResource(R.string.home_child_today),
             style = MaterialTheme.typography.headlineMedium,
             color = tokens.textPrimary,
         )
@@ -62,13 +64,13 @@ fun HomeScreen(
         // Summary cards
         Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             SummaryCard(
-                label = "Open Tasks",
+                label = stringResource(R.string.home_open_tasks),
                 value = openTasks.toString(),
                 color = tokens.accentPrimary,
                 modifier = Modifier.weight(1f),
             )
             SummaryCard(
-                label = if (isParent) "To Approve" else "Completed",
+                label = if (isParent) stringResource(R.string.home_to_approve) else stringResource(R.string.home_completed),
                 value = if (isParent) pendingApprovals.toString() else completedToday.toString(),
                 color = tokens.warning,
                 modifier = Modifier.weight(1f),
@@ -81,14 +83,14 @@ fun HomeScreen(
         if (isParent) {
             NavigationGrid(
                 items = listOf(
-                    HomeNavItem(Routes.TASKS, "Tasks", Icons.Filled.Checklist),
-                    HomeNavItem(Routes.WALLET, "Wallet", Icons.Filled.AccountBalanceWallet),
-                    HomeNavItem(Routes.CALENDAR, "Calendar", Icons.Filled.DateRange),
-                    HomeNavItem(Routes.CHAT, "Chat", Icons.Filled.Forum),
-                    HomeNavItem(Routes.LIBRARY, "Library", Icons.AutoMirrored.Filled.MenuBook),
-                    HomeNavItem(Routes.LOCATION, "Locations", Icons.Filled.LocationOn),
+                    HomeNavItem(Routes.TASKS, stringResource(R.string.nav_tasks), Icons.Filled.Checklist),
+                    HomeNavItem(Routes.WALLET, stringResource(R.string.nav_wallet), Icons.Filled.AccountBalanceWallet),
+                    HomeNavItem(Routes.CALENDAR, stringResource(R.string.nav_calendar), Icons.Filled.DateRange),
+                    HomeNavItem(Routes.CHAT, stringResource(R.string.chat_title), Icons.Filled.Forum),
+                    HomeNavItem(Routes.LIBRARY, stringResource(R.string.library_title), Icons.AutoMirrored.Filled.MenuBook),
+                    HomeNavItem(Routes.LOCATION, stringResource(R.string.location_title), Icons.Filled.LocationOn),
                     HomeNavItem(Routes.PAIRING, "Pairing", Icons.Filled.Link),
-                    HomeNavItem(Routes.CONNECT_PARENTS, "Connect", Icons.Filled.Group),
+                    HomeNavItem(Routes.CONNECT_PARENTS, stringResource(R.string.connect_parents_title), Icons.Filled.Group),
                     HomeNavItem(Routes.DIAGNOSTICS, "Diagnostics", Icons.Filled.Build),
                 ),
                 onNavigate = onNavigate,
@@ -96,12 +98,14 @@ fun HomeScreen(
         } else {
             NavigationGrid(
                 items = listOf(
-                    HomeNavItem(Routes.TASKS, "My Tasks", Icons.Filled.Checklist),
-                    HomeNavItem(Routes.WALLET, "My Wallet", Icons.Filled.AccountBalanceWallet),
-                    HomeNavItem(Routes.CALENDAR, "Calendar", Icons.Filled.DateRange),
-                    HomeNavItem(Routes.CHAT, "Chat", Icons.Filled.Forum),
-                    HomeNavItem(Routes.LIBRARY, "Library", Icons.AutoMirrored.Filled.MenuBook),
-                    HomeNavItem(Routes.LOCATION, "Locations", Icons.Filled.LocationOn),
+                    HomeNavItem(Routes.TASKS, stringResource(R.string.tasks_mine), Icons.Filled.Checklist),
+                    HomeNavItem(Routes.WALLET, stringResource(R.string.wallet_balance), Icons.Filled.AccountBalanceWallet),
+                    HomeNavItem(Routes.CALENDAR, stringResource(R.string.nav_calendar), Icons.Filled.DateRange),
+                    HomeNavItem(Routes.CHAT, stringResource(R.string.chat_title), Icons.Filled.Forum),
+                    HomeNavItem(Routes.LIBRARY, stringResource(R.string.library_title), Icons.AutoMirrored.Filled.MenuBook),
+                    HomeNavItem(Routes.LOCATION, stringResource(R.string.location_title), Icons.Filled.LocationOn),
+                    HomeNavItem(Routes.SOS, "SOS Button", Icons.Filled.Warning),
+                    HomeNavItem(Routes.BOUNDARIES, "My Boundaries", Icons.Filled.Favorite),
                 ),
                 onNavigate = onNavigate,
             )
@@ -110,13 +114,13 @@ fun HomeScreen(
         Spacer(Modifier.height(24.dp))
 
         // Today's tasks
-        Text("Today's Tasks", style = MaterialTheme.typography.titleMedium, color = tokens.textPrimary)
+        Text(stringResource(R.string.home_today_tasks), style = MaterialTheme.typography.titleMedium, color = tokens.textPrimary)
         Spacer(Modifier.height(8.dp))
 
         if (todayTasks.isEmpty()) {
             Card(colors = CardDefaults.cardColors(containerColor = tokens.card), modifier = Modifier.fillMaxWidth()) {
                 Text(
-                    "No tasks scheduled for today. Enjoy the calm! 🌿",
+                    stringResource(R.string.home_no_tasks),
                     modifier = Modifier.padding(16.dp),
                     color = tokens.textSecondary,
                 )

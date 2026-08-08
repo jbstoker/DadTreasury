@@ -30,6 +30,7 @@ class MappersTaskTest {
             locationRuleId = "loc1",
             checklist = listOf("tidy", "vacuum"),
             completionPhotoUri = "content://photo",
+            childId = "c1",
             createdAt = 100L,
             updatedAt = 200L,
         )

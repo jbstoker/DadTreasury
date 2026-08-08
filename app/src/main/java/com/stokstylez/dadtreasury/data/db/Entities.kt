@@ -25,6 +25,7 @@ data class TaskEntity(
     val locationRuleId: String?,
     val checklist: List<String>,
     val completionPhotoUri: String?,
+    val childId: String?,
     val createdAt: Long,
     val updatedAt: Long,
 )
@@ -122,6 +123,7 @@ data class GeoRuleEntity(
     val repeatDaily: Boolean,
     val isEnabled: Boolean,
     val taskId: String?,
+    val targetRole: String,
     val createdAt: Long,
 )
 

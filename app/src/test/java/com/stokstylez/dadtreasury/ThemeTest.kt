@@ -1,5 +1,6 @@
 package com.stokstylez.dadtreasury
 
+import com.stokstylez.dadtreasury.domain.model.Language
 import com.stokstylez.dadtreasury.ui.theme.AppSettingsState
 import com.stokstylez.dadtreasury.ui.theme.CalmTokens
 import com.stokstylez.dadtreasury.ui.theme.HighContrastTokens
@@ -43,6 +44,7 @@ class ThemeTest {
         assertFalse(state.highContrast)
         assertEquals(1.0f, state.textScale)
         assertEquals(ThemeChoice.RETRO_FUTURIST, state.theme)
+        assertEquals(Language.SYSTEM_DEFAULT, state.language)
     }
 
     @Test
@@ -54,6 +56,7 @@ class ThemeTest {
         state.highContrast = true
         state.textScale = 1.5f
         state.theme = ThemeChoice.NATURE
+        state.language = Language.ENGLISH
 
         assertEquals("PARENT", state.role)
         assertTrue(state.calmMode)
@@ -61,5 +64,6 @@ class ThemeTest {
         assertTrue(state.highContrast)
         assertEquals(1.5f, state.textScale)
         assertEquals(ThemeChoice.NATURE, state.theme)
+        assertEquals(Language.ENGLISH, state.language)
     }
 }

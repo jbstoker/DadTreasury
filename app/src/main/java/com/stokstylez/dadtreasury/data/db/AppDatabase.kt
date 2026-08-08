@@ -45,7 +45,7 @@ class Converters {
         AppConnectionEntity::class,
         SharedLibraryPageEntity::class,
     ],
-    version = 3,
+    version = 4,
     exportSchema = false,
 )
 @TypeConverters(Converters::class)
@@ -81,7 +81,7 @@ abstract class AppDatabase : RoomDatabase() {
                     "dad_treasury.db",
                 )
                     .openHelperFactory(factory)
-                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4)
                     .build()
                     .also { INSTANCE = it }
             }
@@ -122,6 +122,13 @@ abstract class AppDatabase : RoomDatabase() {
                 db.execSQL(
                     "ALTER TABLE tasks ADD COLUMN completionPhotoUri TEXT DEFAULT NULL"
                 )
+            }
+        }
+
+        val MIGRATION_3_4 = object : Migration(3, 4) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE tasks ADD COLUMN childId TEXT DEFAULT NULL")
+                db.execSQL("ALTER TABLE geo_rules ADD COLUMN targetRole TEXT NOT NULL DEFAULT 'CHILD'")
             }
         }
 

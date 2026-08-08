@@ -11,10 +11,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.stokstylez.dadtreasury.R
 import com.stokstylez.dadtreasury.data.DadTreasuryRepository
 import com.stokstylez.dadtreasury.data.SettingsRepository
 import com.stokstylez.dadtreasury.security.PinLockManager
@@ -31,6 +33,8 @@ object Routes {
     const val CHAT = "chat"
     const val LIBRARY = "library"
     const val LOCATION = "location"
+    const val SOS = "sos"
+    const val BOUNDARIES = "boundaries"
     const val PAIRING = "pairing"
     const val DIAGNOSTICS = "diagnostics"
     const val CONNECT_PARENTS = "connect_parents"
@@ -67,12 +71,19 @@ fun DadTreasuryApp(
         containerColor = tokens.background,
         bottomBar = {
             if (onboardingDone) {
+                val navLabels = listOf(
+                    stringResource(R.string.nav_home),
+                    stringResource(R.string.nav_tasks),
+                    stringResource(R.string.nav_wallet),
+                    stringResource(R.string.nav_calendar),
+                    stringResource(R.string.nav_settings),
+                )
                 val items = listOf(
-                    BottomNavItem(Routes.HOME, "Home", Icons.Filled.Home),
-                    BottomNavItem(Routes.TASKS, "Tasks", Icons.Filled.Checklist),
-                    BottomNavItem(Routes.WALLET, "Wallet", Icons.Filled.AccountBalanceWallet),
-                    BottomNavItem(Routes.CALENDAR, "Calendar", Icons.Filled.DateRange),
-                    BottomNavItem(Routes.SETTINGS, "Settings", Icons.Filled.Settings),
+                    BottomNavItem(Routes.HOME, navLabels[0], Icons.Filled.Home),
+                    BottomNavItem(Routes.TASKS, navLabels[1], Icons.Filled.Checklist),
+                    BottomNavItem(Routes.WALLET, navLabels[2], Icons.Filled.AccountBalanceWallet),
+                    BottomNavItem(Routes.CALENDAR, navLabels[3], Icons.Filled.DateRange),
+                    BottomNavItem(Routes.SETTINGS, navLabels[4], Icons.Filled.Settings),
                 )
 
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -86,8 +97,6 @@ fun DadTreasuryApp(
                             selected = currentRoute == item.route,
                             onClick = {
                                 if (item.route == Routes.HOME) {
-                                    // Pop back to the dashboard instead of navigating,
-                                    // which would restore a stale backstack (Wallet on top).
                                     navController.popBackStack(Routes.HOME, inclusive = false)
                                 } else {
                                     navController.navigate(item.route) {
@@ -163,6 +172,12 @@ fun DadTreasuryApp(
                 }
                 composable(Routes.LOCATION) {
                     LocationScreen(repository = repository, role = role)
+                }
+                composable(Routes.SOS) {
+                    SosScreen(repository = repository)
+                }
+                composable(Routes.BOUNDARIES) {
+                    MyBoundariesView(repository = repository)
                 }
                 composable(Routes.PAIRING) {
                     PairingScreen(repository = repository, role = role)

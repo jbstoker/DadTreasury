@@ -17,12 +17,103 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.AndroidView
 import com.stokstylez.dadtreasury.data.DadTreasuryRepository
 import com.stokstylez.dadtreasury.ui.theme.LocalSemanticTokens
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.osmdroid.config.Configuration
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory
+import org.osmdroid.util.GeoPoint
+import org.osmdroid.views.MapView
+import org.osmdroid.views.overlay.Marker
+import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
+import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 import java.util.Locale
+
+/**
+ * osmdroid map composable - no Google Play Services needed.
+ */
+@Composable
+fun rememberOsmdroidMap(): MapView {
+    val context = LocalContext.current
+    val mapView = remember {
+        Configuration.getInstance().load(context, context.getSharedPreferences("osmdroid", 0))
+        // Use OpenStreetMap standard tiles (no API key required)
+        MapView(context).apply {
+            setTileSource(TileSourceFactory.MAPNIK)
+            setMultiTouchControls(true)
+            minZoomLevel = 3.0
+            maxZoomLevel = 19.0
+            controller.setZoom(12.0)
+        }
+    }
+    DisposableEffect(Unit) {
+        onDispose {
+            mapView.onDetach()
+        }
+    }
+    return mapView
+}
+
+/**
+ * Displays a full interactive map and returns the tapped coordinates via [onLocationPicked].
+ */
+@Composable
+fun LocationPickerMap(
+    onLocationPicked: (Double, Double, String) -> Unit,
+    initialLat: Double? = null,
+    initialLng: Double? = null,
+    modifier: Modifier = Modifier,
+) {
+    val context = LocalContext.current
+    val mapView = rememberOsmdroidMap()
+
+    // Track a draggable marker for the selected position
+    var marker by remember { mutableStateOf<Marker?>(null) }
+
+    LaunchedEffect(Unit) {
+        val startLat = initialLat ?: 52.3676
+        val startLng = initialLng ?: 4.9041
+        val startPoint = GeoPoint(startLat, startLng)
+        mapView.controller.setCenter(startPoint)
+        mapView.controller.setZoom(13.0)
+
+        val m = Marker(mapView).apply {
+            position = startPoint
+            setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+            title = "Selected location"
+            isDraggable = true
+            mapView.overlays.add(this)
+        }
+        marker = m
+
+        // My-location overlay (requires location permission)
+        val myLocation = MyLocationNewOverlay(GpsMyLocationProvider(context), mapView)
+        myLocation.enableMyLocation()
+        mapView.overlays.add(myLocation)
+
+        // Tap on map moves the marker
+        mapView.overlays.add(
+            object : org.osmdroid.views.overlay.Overlay() {
+                override fun onTouchEvent(e: android.view.MotionEvent?, mapView: MapView?): Boolean {
+                    if (e?.action == android.view.MotionEvent.ACTION_UP && mapView != null) {
+                        val geoPoint = mapView.projection.fromPixels(e.x.toInt(), e.y.toInt())
+                        m.position = GeoPoint(geoPoint.latitude, geoPoint.longitude)
+                        onLocationPicked(geoPoint.latitude, geoPoint.longitude, "")
+                    }
+                    return super.onTouchEvent(e, mapView)
+                }
+            }
+        )
+    }
+
+    AndroidView(
+        factory = { mapView },
+        modifier = modifier,
+    )
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -105,7 +196,7 @@ fun LocationScreen(repository: DadTreasuryRepository, role: String? = null) {
     if (showDialog) {
         AddGeoRuleDialog(
             onDismiss = { showDialog = false },
-            onSave = { title, message, lat, lng, radius, startHour, endHour ->
+            onSave = { title, message, lat, lng, radius, startHour, endHour, targetRole ->
                 scope.launch {
                     repository.addGeoRule(
                         title = title,
@@ -115,6 +206,7 @@ fun LocationScreen(repository: DadTreasuryRepository, role: String? = null) {
                         radiusMeters = radius,
                         activeStartHour = startHour,
                         activeEndHour = endHour,
+                        targetRole = targetRole,
                     )
                 }
                 showDialog = false
@@ -123,46 +215,49 @@ fun LocationScreen(repository: DadTreasuryRepository, role: String? = null) {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddGeoRuleDialog(
     onDismiss: () -> Unit,
-    onSave: (String, String, Double, Double, Int, Int, Int) -> Unit,
+    onSave: (String, String, Double, Double, Int, Int, Int, String) -> Unit,
 ) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     var title by remember { mutableStateOf("") }
     var message by remember { mutableStateOf("") }
     var placeName by remember { mutableStateOf("") }
-    var latitude by remember { mutableStateOf("") }
-    var longitude by remember { mutableStateOf("") }
+    // Selected coordinates (start centered on Netherlands)
+    var pickedLat by remember { mutableStateOf(52.3676) }
+    var pickedLng by remember { mutableStateOf(4.9041) }
     var radius by remember { mutableStateOf("150") }
     var startHour by remember { mutableStateOf("0") }
     var endHour by remember { mutableStateOf("24") }
     var searchStatus by remember { mutableStateOf<String?>(null) }
-    var maxResults by remember { mutableStateOf("5") }
+    var showMapSheet by remember { mutableStateOf(false) }
+    var resolvedPlaceName by remember { mutableStateOf("") }
+    var targetRole by remember { mutableStateOf("CHILD") }
 
-    fun resolveCoordinates() {
-        val lat = latitude.toDoubleOrNull()
-        val lng = longitude.toDoubleOrNull()
-        if (lat != null && lng != null) return
-
-        if (placeName.isNotBlank()) {
+    fun resolveAddress(query: String) {
+        if (query.isNotBlank()) {
             scope.launch {
                 searchStatus = "Searching..."
                 val results = withContext(Dispatchers.IO) {
-                    searchPlacesSmart(context, placeName, maxResults.toIntOrNull() ?: 5)
+                    try {
+                        val geocoder = Geocoder(context, Locale.getDefault())
+                        val list = geocoder.getFromLocationName(query, 1) ?: emptyList()
+                        list.map { Triple(it.latitude, it.longitude, it.getAddressLine(0) ?: "") }
+                    } catch (_: Exception) {
+                        emptyList()
+                    }
                 }
                 if (results.isNotEmpty()) {
-                    val first = results.first()
-                    latitude = first.first.toString()
-                    longitude = first.second.toString()
-                    searchStatus = if (results.size > 1) {
-                        "✓ ${results.size} locations found - using most relevant"
-                    } else {
-                        "✓ Found: ${"%.4f".format(first.first)}, ${"%.4f".format(first.second)}"
-                    }
+                    val (lat, lng, name) = results.first()
+                    pickedLat = lat
+                    pickedLng = lng
+                    resolvedPlaceName = name
+                    searchStatus = "✓ Found: ${"%.4f".format(lat)}, ${"%.4f".format(lng)}"
                 } else {
-                    searchStatus = "Place not found - enter coordinates manually"
+                    searchStatus = "Place not found - use the map to pick a location"
                 }
             }
         }
@@ -193,7 +288,7 @@ fun AddGeoRuleDialog(
                         }
                         if (address.isNotBlank()) {
                             placeName = address
-                            resolveCoordinates()
+                            resolveAddress(address)
                         }
                     }
                 }
@@ -201,8 +296,74 @@ fun AddGeoRuleDialog(
         }
     )
 
+
     val radiusOptions = listOf(50, 100, 150, 250, 500, 1000, 2000, 5000)
     var radiusChoice by remember { mutableStateOf("150") }
+
+    // If the map sheet closes with picked coordinates, those are already set
+    if (showMapSheet) {
+        AlertDialog(
+            onDismissRequest = { showMapSheet = false },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        // Resolve a human-readable place name for the picked coordinates
+                        scope.launch {
+                            val name = withContext(Dispatchers.IO) {
+                                try {
+                                    val geocoder = Geocoder(context, Locale.getDefault())
+                                    val addr = geocoder.getFromLocation(pickedLat, pickedLng, 1)?.firstOrNull()
+                                    addr?.getAddressLine(0) ?: "Picked location"
+                                } catch (_: Exception) {
+                                    "Picked location"
+                                }
+                            }
+                            resolvedPlaceName = name
+                        }
+                        showMapSheet = false
+                    },
+                ) { Text("Use this location") }
+            },
+            dismissButton = { TextButton(onClick = { showMapSheet = false }) { Text("Cancel") } },
+            title = { Text("Pick location on map") },
+            text = {
+                Column {
+                    OutlinedTextField(
+                        value = placeName,
+                        onValueChange = { placeName = it },
+                        label = { Text("Search address") },
+                        modifier = Modifier.fillMaxWidth(),
+                        trailingIcon = {
+                            IconButton(onClick = { resolveAddress(placeName) }) {
+                                Icon(Icons.Filled.Search, contentDescription = "Search", tint = LocalSemanticTokens.current.accentPrimary)
+                            }
+                        },
+                    )
+                    searchStatus?.let {
+                        Text(it, style = MaterialTheme.typography.bodySmall, color = LocalSemanticTokens.current.success)
+                    }
+                    Spacer(Modifier.height(8.dp))
+                    LocationPickerMap(
+                        initialLat = pickedLat,
+                        initialLng = pickedLng,
+                        onLocationPicked = { lat, lng, _ ->
+                            pickedLat = lat
+                            pickedLng = lng
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(400.dp),
+                    )
+                    Spacer(Modifier.height(8.dp))
+                    Text(
+                        "📍 ${"%.5f".format(pickedLat)}, ${"%.5f".format(pickedLng)}",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = LocalSemanticTokens.current.textPrimary,
+                    )
+                }
+            },
+        )
+    }
 
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -227,6 +388,51 @@ fun AddGeoRuleDialog(
                     label = { Text("Message *") },
                     modifier = Modifier.fillMaxWidth(),
                 )
+
+                // Who should receive this notification?
+                Text("Notify", style = MaterialTheme.typography.labelMedium, color = LocalSemanticTokens.current.textSecondary)
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    FilterChip(
+                        selected = targetRole == "CHILD",
+                        onClick = { targetRole = "CHILD" },
+                        label = { Text("🧒 Child") },
+                    )
+                    FilterChip(
+                        selected = targetRole == "PARENT",
+                        onClick = { targetRole = "PARENT" },
+                        label = { Text("👨 Parent (personal)") },
+                    )
+                }
+
+                // Map picker button - hides the coordinate fields
+                Card(
+                    colors = CardDefaults.cardColors(containerColor = LocalSemanticTokens.current.card),
+                    modifier = Modifier.fillMaxWidth(),
+                    onClick = { showMapSheet = true },
+                ) {
+                    Row(
+                        modifier = Modifier.padding(12.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Icon(
+                            Icons.Filled.Map,
+                            contentDescription = null,
+                            tint = LocalSemanticTokens.current.accentPrimary,
+                        )
+                        Spacer(Modifier.width(8.dp))
+                        Column(Modifier.weight(1f)) {
+                            Text("Select Location on Map", style = MaterialTheme.typography.bodyLarge, color = LocalSemanticTokens.current.textPrimary)
+                            Text(
+                                resolvedPlaceName.ifBlank { "Tap to open map with address search" },
+                                style = MaterialTheme.typography.bodySmall,
+                                color = LocalSemanticTokens.current.textSecondary,
+                            )
+                        }
+                        Icon(Icons.Filled.ChevronRight, contentDescription = null, tint = LocalSemanticTokens.current.textSecondary)
+                    }
+                }
+
+                // Address search + contact picker (quick search without opening full map)
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     OutlinedTextField(
                         value = placeName,
@@ -234,7 +440,7 @@ fun AddGeoRuleDialog(
                         label = { Text("Place name (e.g. Home, School)") },
                         modifier = Modifier.weight(1f),
                         trailingIcon = {
-                            IconButton(onClick = { resolveCoordinates() }) {
+                            IconButton(onClick = { resolveAddress(placeName) }) {
                                 Icon(Icons.Filled.Search, contentDescription = "Search place", tint = LocalSemanticTokens.current.accentPrimary)
                             }
                         },
@@ -247,21 +453,18 @@ fun AddGeoRuleDialog(
                         Icon(Icons.Filled.Contacts, contentDescription = "Pick contact address", tint = LocalSemanticTokens.current.accentPrimary)
                     }
                 }
+
                 searchStatus?.let {
                     Text(it, style = MaterialTheme.typography.bodySmall, color = LocalSemanticTokens.current.success)
                 }
-                OutlinedTextField(
-                    value = latitude,
-                    onValueChange = { latitude = it },
-                    label = { Text("Latitude") },
-                    modifier = Modifier.fillMaxWidth(),
-                )
-                OutlinedTextField(
-                    value = longitude,
-                    onValueChange = { longitude = it },
-                    label = { Text("Longitude") },
-                    modifier = Modifier.fillMaxWidth(),
-                )
+
+                if (resolvedPlaceName.isNotBlank()) {
+                    Text(
+                        "📍 ${"%.5f".format(pickedLat)}, ${"%.5f".format(pickedLng)} · $resolvedPlaceName",
+                        style = MaterialTheme.typography.labelMedium,
+                        color = LocalSemanticTokens.current.textSecondary,
+                    )
+                }
 
                 Text("Radius", style = MaterialTheme.typography.labelMedium, color = LocalSemanticTokens.current.textSecondary)
                 Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
@@ -301,17 +504,16 @@ fun AddGeoRuleDialog(
         confirmButton = {
             TextButton(
                 onClick = {
-                    val lat = latitude.toDoubleOrNull()
-                    val lng = longitude.toDoubleOrNull()
-                    if (title.isNotBlank() && message.isNotBlank() && lat != null && lng != null) {
+                    if (title.isNotBlank() && message.isNotBlank()) {
                         onSave(
                             title.trim(),
                             message.trim(),
-                            lat,
-                            lng,
+                            pickedLat,
+                            pickedLng,
                             radius.toIntOrNull() ?: 150,
                             startHour.toIntOrNull() ?: 0,
                             endHour.toIntOrNull() ?: 24,
+                            targetRole,
                         )
                     }
                 },

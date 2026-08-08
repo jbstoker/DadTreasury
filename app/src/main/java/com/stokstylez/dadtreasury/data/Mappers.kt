@@ -18,6 +18,7 @@ fun TaskEntity.toDomain(): Task = Task(
     locationRuleId = locationRuleId,
     checklist = checklist,
     completionPhotoUri = completionPhotoUri,
+    childId = childId,
     createdAt = createdAt,
     updatedAt = updatedAt,
 )
@@ -36,6 +37,7 @@ fun Task.toEntity(): TaskEntity = TaskEntity(
     locationRuleId = locationRuleId,
     checklist = checklist,
     completionPhotoUri = completionPhotoUri,
+    childId = childId,
     createdAt = createdAt,
     updatedAt = updatedAt,
 )
@@ -165,6 +167,7 @@ fun GeoRuleEntity.toDomain(): GeoRule = GeoRule(
     repeatDaily = repeatDaily,
     isEnabled = isEnabled,
     taskId = taskId,
+    targetRole = targetRole,
     createdAt = createdAt,
 )
 
@@ -180,6 +183,7 @@ fun GeoRule.toEntity(): GeoRuleEntity = GeoRuleEntity(
     repeatDaily = repeatDaily,
     isEnabled = isEnabled,
     taskId = taskId,
+    targetRole = targetRole,
     createdAt = createdAt,
 )
 

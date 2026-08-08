@@ -124,7 +124,7 @@ class RepositoryTaskTest {
             dueTimestamp = null, rewardType = RewardType.FREE.name, rewardAmount = 0,
             status = TaskStatus.OPEN.name, approvalState = ApprovalState.NOT_SUBMITTED.name,
             notes = "", locationRuleId = null, checklist = emptyList(),
-            completionPhotoUri = null, createdAt = 100L, updatedAt = 100L,
+            completionPhotoUri = null, childId = null, createdAt = 100L, updatedAt = 100L,
         )
         coEvery { taskDao.getById("t1") } returns existing
 
@@ -150,7 +150,7 @@ class RepositoryTaskTest {
             dueTimestamp = null, rewardType = RewardType.PAID.name, rewardAmount = 200,
             status = TaskStatus.COMPLETED.name, approvalState = ApprovalState.PENDING.name,
             notes = "", locationRuleId = null, checklist = emptyList(),
-            completionPhotoUri = null, createdAt = 100L, updatedAt = 100L,
+            completionPhotoUri = null, childId = null, createdAt = 100L, updatedAt = 100L,
         )
         coEvery { taskDao.getById("t1") } returns existing
         coEvery { taskDao.upsert(any()) } just runs
@@ -180,7 +180,7 @@ class RepositoryTaskTest {
             dueTimestamp = null, rewardType = RewardType.TIME.name, rewardAmount = 60,
             status = TaskStatus.COMPLETED.name, approvalState = ApprovalState.PENDING.name,
             notes = "", locationRuleId = null, checklist = emptyList(),
-            completionPhotoUri = null, createdAt = 100L, updatedAt = 100L,
+            completionPhotoUri = null, childId = null, createdAt = 100L, updatedAt = 100L,
         )
         coEvery { taskDao.getById("t2") } returns existing
         coEvery { taskDao.upsert(any()) } just runs
@@ -209,7 +209,7 @@ class RepositoryTaskTest {
             dueTimestamp = null, rewardType = RewardType.FREE.name, rewardAmount = 0,
             status = TaskStatus.COMPLETED.name, approvalState = ApprovalState.PENDING.name,
             notes = "", locationRuleId = null, checklist = emptyList(),
-            completionPhotoUri = null, createdAt = 100L, updatedAt = 100L,
+            completionPhotoUri = null, childId = null, createdAt = 100L, updatedAt = 100L,
         )
         coEvery { taskDao.getById("t3") } returns existing
         coEvery { taskDao.upsert(any()) } just runs
@@ -231,7 +231,7 @@ class RepositoryTaskTest {
             dueTimestamp = null, rewardType = RewardType.FREE.name, rewardAmount = 0,
             status = TaskStatus.COMPLETED.name, approvalState = ApprovalState.PENDING.name,
             notes = "", locationRuleId = null, checklist = emptyList(),
-            completionPhotoUri = null, createdAt = 100L, updatedAt = 100L,
+            completionPhotoUri = null, childId = null, createdAt = 100L, updatedAt = 100L,
         )
         coEvery { taskDao.getById("t4") } returns existing
 
@@ -253,7 +253,7 @@ class RepositoryTaskTest {
                 dueTimestamp = null, rewardType = RewardType.PAID.name, rewardAmount = 100,
                 status = TaskStatus.OPEN.name, approvalState = ApprovalState.NOT_SUBMITTED.name,
                 notes = "", locationRuleId = null, checklist = emptyList(),
-                completionPhotoUri = null, createdAt = 1L, updatedAt = 1L,
+                completionPhotoUri = null, childId = null, createdAt = 1L, updatedAt = 1L,
             )
         )
         every { taskDao.observeAll() } returns flowOf(entities)
@@ -282,7 +282,7 @@ class RepositoryTaskTest {
             dueTimestamp = null, rewardType = RewardType.FREE.name, rewardAmount = 0,
             status = TaskStatus.APPROVED.name, approvalState = ApprovalState.APPROVED.name,
             notes = "", locationRuleId = null, checklist = emptyList(),
-            completionPhotoUri = null, createdAt = 1L, updatedAt = 1L,
+            completionPhotoUri = null, childId = null, createdAt = 1L, updatedAt = 1L,
         )
         coEvery { taskDao.getById("t1") } returns entity
 

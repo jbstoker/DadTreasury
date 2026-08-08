@@ -63,7 +63,8 @@ fun TaskDetailScreen(
             if (success) {
                 photoUri?.let { uri ->
                     scope.launch {
-                        repository.completeTask(taskId, "child-1", completionPhotoUri = uri.toString())
+                        val childId = task?.childId ?: "child-1"
+                        repository.completeTask(taskId, childId, completionPhotoUri = uri.toString())
                         onBack()
                     }
                 }
@@ -187,7 +188,8 @@ fun TaskDetailScreen(
                             Button(
                                 onClick = {
                                     scope.launch {
-                                        repository.approveTask(currentTask.id, "child-1")
+                                        val childId = currentTask.childId ?: "child-1"
+                                        repository.approveTask(currentTask.id, childId)
                                         onBack()
                                     }
                                 },

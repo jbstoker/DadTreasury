@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.floatPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.stokstylez.dadtreasury.domain.model.Language
 import com.stokstylez.dadtreasury.domain.model.Role
 import com.stokstylez.dadtreasury.ui.theme.ThemeChoice
 import kotlinx.coroutines.flow.Flow
@@ -25,6 +26,7 @@ class SettingsRepository(private val context: Context) {
         val REDUCED_MOTION = booleanPreferencesKey("reduced_motion")
         val HIGH_CONTRAST = booleanPreferencesKey("high_contrast")
         val TEXT_SCALE = floatPreferencesKey("text_scale")
+        val LANGUAGE = stringPreferencesKey("language")
         val ONBOARDING_DONE = booleanPreferencesKey("onboarding_done")
     }
 
@@ -50,6 +52,11 @@ class SettingsRepository(private val context: Context) {
 
     val textScale: Flow<Float> = context.dataStore.data.map { prefs ->
         prefs[Keys.TEXT_SCALE] ?: 1.0f
+    }
+
+    val language: Flow<Language> = context.dataStore.data.map { prefs ->
+        prefs[Keys.LANGUAGE]?.let { runCatching { Language.valueOf(it) }.getOrNull() }
+            ?: Language.SYSTEM_DEFAULT
     }
 
     val onboardingDone: Flow<Boolean> = context.dataStore.data.map { prefs ->
@@ -78,6 +85,10 @@ class SettingsRepository(private val context: Context) {
 
     suspend fun setTextScale(scale: Float) {
         context.dataStore.edit { it[Keys.TEXT_SCALE] = scale }
+    }
+
+    suspend fun setLanguage(language: Language) {
+        context.dataStore.edit { it[Keys.LANGUAGE] = language.name }
     }
 
     suspend fun setOnboardingDone() {

@@ -57,6 +57,7 @@ class DadTreasuryRepository(
         rewardAmount: Long = 0,
         notes: String = "",
         checklist: List<String> = emptyList(),
+        childId: String? = null,
     ) {
         requireParent()
         val now = System.currentTimeMillis()
@@ -70,6 +71,7 @@ class DadTreasuryRepository(
             rewardAmount = rewardAmount,
             notes = notes,
             checklist = checklist,
+            childId = childId,
             createdAt = now,
             updatedAt = now,
         )
@@ -311,6 +313,7 @@ class DadTreasuryRepository(
         activeStartHour: Int,
         activeEndHour: Int,
         taskId: String? = null,
+        targetRole: String = "CHILD",
     ) {
         requireParent()
         val rule = GeoRule(
@@ -323,6 +326,7 @@ class DadTreasuryRepository(
             activeStartHour = activeStartHour,
             activeEndHour = activeEndHour,
             taskId = taskId,
+            targetRole = targetRole,
             createdAt = System.currentTimeMillis(),
         )
         geoRuleDao.upsert(rule.toEntity())

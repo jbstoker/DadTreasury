@@ -18,5 +18,6 @@ data class GeoRule(
     val repeatDaily: Boolean = true,
     val isEnabled: Boolean = true,
     val taskId: String? = null,
+    val targetRole: String = "CHILD", // "CHILD" or "PARENT" - who receives the notification
     val createdAt: Long = System.currentTimeMillis(),
 )
