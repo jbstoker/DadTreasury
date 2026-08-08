@@ -26,6 +26,7 @@ fun SettingsScreen(
     settingsRepository: SettingsRepository,
     pinLockManager: PinLockManager? = null,
     onNavigatePinSetup: (() -> Unit)? = null,
+    onNavigatePersonalInfo: (() -> Unit)? = null,
 ) {
     val tokens = LocalSemanticTokens.current
     val appSettings = LocalAppSettings.current
@@ -266,6 +267,27 @@ fun SettingsScreen(
                         if (pinEnabled) {
                             Icon(Icons.Filled.Check, contentDescription = "Enabled", tint = tokens.success)
                         }
+                    }
+                }
+            }
+
+            if (onNavigatePersonalInfo != null) {
+                Spacer(Modifier.height(24.dp))
+                Text("Personal Info", style = MaterialTheme.typography.titleMedium, color = tokens.textPrimary)
+                Spacer(Modifier.height(8.dp))
+                Card(
+                    colors = CardDefaults.cardColors(containerColor = tokens.card),
+                    modifier = Modifier.fillMaxWidth(),
+                    onClick = onNavigatePersonalInfo,
+                ) {
+                    Row(Modifier.padding(12.dp), verticalAlignment = Alignment.CenterVertically) {
+                        Icon(Icons.Filled.Person, contentDescription = null, tint = tokens.accentPrimary)
+                        Spacer(Modifier.width(12.dp))
+                        Column(Modifier.weight(1f)) {
+                            Text("My Household Info", style = MaterialTheme.typography.bodyLarge, color = tokens.textPrimary)
+                            Text("Dad, Mom, my details, and sizes", style = MaterialTheme.typography.bodySmall, color = tokens.textSecondary)
+                        }
+                        Icon(Icons.Filled.ChevronRight, contentDescription = null, tint = tokens.textSecondary)
                     }
                 }
             }

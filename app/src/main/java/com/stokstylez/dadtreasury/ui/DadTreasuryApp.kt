@@ -40,6 +40,7 @@ object Routes {
     const val CONNECT_PARENTS = "connect_parents"
     const val SETTINGS = "settings"
     const val PIN_SETUP = "pin_setup"
+    const val PERSONAL_INFO = "personal_info"
 
     fun taskDetail(taskId: String) = "task/$taskId"
 }
@@ -193,6 +194,13 @@ fun DadTreasuryApp(
                         settingsRepository = settingsRepository,
                         pinLockManager = pinLockManager,
                         onNavigatePinSetup = { navController.navigate(Routes.PIN_SETUP) },
+                        onNavigatePersonalInfo = { navController.navigate(Routes.PERSONAL_INFO) },
+                    )
+                }
+                composable(Routes.PERSONAL_INFO) {
+                    PersonalInfoScreen(
+                        settingsRepository = settingsRepository,
+                        role = role,
                     )
                 }
                 composable(Routes.PIN_SETUP) {
