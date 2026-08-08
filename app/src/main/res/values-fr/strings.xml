@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App -->
+    <string name="app_name">Dad Treasury</string>
+    <string name="app_tagline">Un hub familial calme et privé</string>
+
+    <!-- Common actions -->
+    <string name="action_mark_done">✓ Fait</string>
+    <string name="action_disable">✕ Désactiver</string>
+    <string name="action_save">Enregistrer</string>
+    <string name="action_cancel">Annuler</string>
+    <string name="action_create">Créer</string>
+    <string name="action_delete">Supprimer</string>
+    <string name="action_add">Ajouter</string>
+    <string name="action_close">Fermer</string>
+    <string name="action_back">Retour</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title">🌿 RetroNest</string>
+    <string name="onboarding_who">Qui utilisera cet appareil ?</string>
+    <string name="onboarding_parent">👨 Parent</string>
+    <string name="onboarding_child">🧒 Enfant</string>
+    <string name="onboarding_name_title">Comment devrions-nous t\'appeler ?</string>
+    <string name="onboarding_name_hint">Ton nom</string>
+    <string name="onboarding_name_required">Veuillez entrer votre nom</string>
+    <string name="onboarding_start">Commencer avec RetroNest</string>
+
+    <!-- Bottom nav -->
+    <string name="nav_home">Accueil</string>
+    <string name="nav_tasks">Tâches</string>
+    <string name="nav_wallet">Portefeuille</string>
+    <string name="nav_calendar">Calendrier</string>
+    <string name="nav_settings">Paramètres</string>
+
+    <!-- Home -->
+    <string name="home_parent_dashboard">📋 Tableau de bord parent</string>
+    <string name="home_child_today">⭐ Aujourd\'hui</string>
+    <string name="home_open_tasks">Tâches ouvertes</string>
+    <string name="home_to_approve">À approuver</string>
+    <string name="home_completed">Terminées</string>
+    <string name="home_today_tasks">Tâches d\'aujourd\'hui</string>
+    <string name="home_no_tasks">Aucune tâche prévue aujourd\'hui. Profite du calme ! 🌿</string>
+
+    <!-- Tasks -->
+    <string name="tasks_all">Toutes les tâches</string>
+    <string name="tasks_mine">Mes tâches</string>
+    <string name="tasks_no_tasks_parent">Aucune tâche pour l\'instant. Appuie sur + pour en créer une.</string>
+    <string name="tasks_no_tasks_child">Aucune tâche. Reviens plus tard !</string>
+    <string name="tasks_due">Échéance</string>
+    <string name="tasks_expected">Prévu : %1$d min</string>
+    <string name="tasks_reward_paid">💰 Récompense : €%1$s</string>
+    <string name="tasks_reward_time">⏰ Récompense : %1$d min</string>
+    <string name="tasks_has_photo">📸 A une photo de fin</string>
+    <string name="tasks_new_title">Nouvelle tâche</string>
+    <string name="tasks_title_hint">Titre *</string>
+    <string name="tasks_desc_hint">Description</string>
+    <string name="tasks_duration_hint">Durée prévue (min)</string>
+    <string name="tasks_reward_type">Type de récompense</string>
+    <string name="tasks_amount_hint">Montant (centimes)</string>
+    <string name="tasks_minutes_hint">Minutes</string>
+    <string name="tasks_status_open">Ouverte</string>
+    <string name="tasks_status_awaiting">En attente d\'approbation</string>
+    <string name="tasks_status_approved">Approuvée ✓</string>
+    <string name="tasks_status_rejected">Rejetée</string>
+    <string name="tasks_status_cancelled">Annulée</string>
+    <string name="tasks_complete_photo">📷 Prendre une photo &amp; terminer</string>
+    <string name="tasks_approve">✓ Approuver</string>
+    <string name="tasks_reject">✗ Rejeter</string>
+    <string name="tasks_checklist">Liste de contrôle</string>
+    <string name="tasks_completion_photo">📸 Photo de fin</string>
+
+    <!-- Wallet -->
+    <string name="wallet_title">Portefeuille &amp; Banque de temps</string>
+    <string name="wallet_balance">💰 Portefeuille</string>
+    <string name="time_bank_balance">⏰ Banque de temps</string>
+    <string name="wallet_recent">Transactions récentes</string>
+    <string name="wallet_empty">Aucune transaction. Termine des tâches pour gagner des récompenses !</string>
+    <string name="wallet_no_tx">Aucune transaction. Termine des tâches pour gagner des récompenses !</string>
+
+    <!-- Calendar -->
+    <string name="calendar_title">Calendrier</string>
+    <string name="calendar_upcoming">Événements à venir</string>
+    <string name="calendar_empty">Aucun événement à venir. Ajoute-en un avec + !</string>
+    <string name="calendar_new_event">Nouvel événement</string>
+    <string name="calendar_reminder_hint">Rappel (minutes avant, facultatif)</string>
+    <string name="calendar_date_hint">Date (jj-MM-aaaa)</string>
+    <string name="calendar_time_hint">Heure (HH:mm)</string>
+    <string name="calendar_duration_hint">Durée (heures)</string>
+
+    <!-- Chat -->
+    <string name="chat_title">Chat</string>
+    <string name="chat_hint">Écris un message...</string>
+    <string name="chat_empty">Les messages avec toi et ton parent/enfant apparaissent ici. 👋</string>
+
+    <!-- Library -->
+    <string name="library_title">Bibliothèque</string>
+    <string name="library_empty">Aucune page. Crée une catégorie et ajoute des pages !</string>
+    <string name="library_add_category">Nouvelle catégorie</string>
+    <string name="library_category_hint">Nom de la catégorie</string>
+    <string name="library_add_page">Nouvelle page</string>
+    <string name="library_page_title_hint">Titre *</string>
+    <string name="library_page_body_hint">Contenu</string>
+    <string name="library_tags_hint">Tags (séparés par des virgules)</string>
+
+    <!-- Location -->
+    <string name="location_title">Règles de lieu</string>
+    <string name="location_description">Les règles de lieu déclenchent des rappels locaux quand l\'enfant entre dans une zone. 📍</string>
+    <string name="location_empty">Aucune règle de lieu. Ajoute-en une avec + !</string>
+    <string name="location_new_rule">Nouvelle règle de lieu</string>
+    <string name="location_title_hint">Titre *</string>
+    <string name="location_message_hint">Message *</string>
+    <string name="location_place_hint">Nom du lieu (ex. Maison, École)</string>
+    <string name="location_lat_hint">Latitude</string>
+    <string name="location_lng_hint">Longitude</string>
+    <string name="location_radius_hint">Rayon personnalisé (mètres)</string>
+    <string name="location_active_hours">Heures actives</string>
+    <string name="location_active_from">Actif de (h)</string>
+    <string name="location_active_until">Actif jusqu\'à (h)</string>
+    <string name="location_searching">Recherche...</string>
+    <string name="location_found">✓ Trouvé : %1$s</string>
+    <string name="location_not_found">Lieu introuvable - entrez les coordonnées manuellement</string>
+    <string name="location_pick_contact">Choisir l\'adresse d\'un contact</string>
+    <string name="location_import_contact">📇 Importer depuis les contacts</string>
+
+    <!-- Settings -->
+    <string name="settings_theme_title">Thème</string>
+    <string name="settings_accessibility_title">Accessibilité</string>
+    <string name="settings_security_title">Sécurité</string>
+    <string name="settings_about_title">À propos</string>
+    <string name="settings_calm_mode">Mode calme</string>
+    <string name="settings_calm_desc">Réduire les stimulations visuelles</string>
+    <string name="settings_reduced_motion">Mouvement réduit</string>
+    <string name="settings_reduced_motion_desc">Minimiser les animations</string>
+    <string name="settings_high_contrast">Contraste élevé</string>
+    <string name="settings_high_contrast_desc">Différences de couleurs plus fortes</string>
+    <string name="settings_text_scale">Taille du texte</string>
+    <string name="settings_pin_setup">Configurer le verrouillage PIN</string>
+    <string name="settings_pin_enabled">Verrouillage PIN activé</string>
+    <string name="settings_pin_desc">Exiger un PIN pour accéder à l\'app</string>
+    <string name="settings_about_desc">Application de coordination familiale hors ligne.\nVersion %1$s</string>
+    <string name="settings_language">Langue</string>
+    <string name="settings_language_desc">Choisir la langue de l\'application</string>
+
+    <!-- PIN -->
+    <string name="pin_unlock_title">Dad Treasury</string>
+    <string name="pin_unlock_hint">Entrez votre PIN pour déverrouiller</string>
+    <string name="pin_label">PIN</string>
+    <string name="pin_unlock">Déverrouiller</string>
+    <string name="pin_enter">Entrez votre PIN</string>
+    <string name="pin_incorrect">PIN incorrect (%1$d tentatives restantes)</string>
+    <string name="pin_locked_out">Trop de tentatives. Application verrouillée. Redémarrez pour réessayer.</string>
+    <string name="pin_locked_title">Trop de tentatives échouées</string>
+    <string name="pin_locked_restart">Redémarrez l\'application pour réessayer</string>
+    <string name="pin_setup_title">Configurer le PIN</string>
+    <string name="pin_change_title">Changer le PIN</string>
+    <string name="pin_protect">Protégez vos données familiales avec un PIN</string>
+    <string name="pin_current">PIN actuel</string>
+    <string name="pin_new">Nouveau PIN</string>
+    <string name="pin_confirm">Confirmer le PIN</string>
+    <string name="pin_short">Le PIN doit contenir au moins 4 chiffres</string>
+    <string name="pin_digits_only">Le PIN ne doit contenir que des chiffres</string>
+    <string name="pin_mismatch">Les PIN ne correspondent pas</string>
+    <string name="pin_wrong_current">Le PIN actuel est incorrect</string>
+    <string name="pin_enable_btn">Activer le PIN 🔒</string>
+    <string name="pin_change_btn">Changer le PIN</string>
+</resources>

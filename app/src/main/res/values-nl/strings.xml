@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App -->
+    <string name="app_name">Dad Treasury</string>
+    <string name="app_tagline">Een rustige, privé familiehub</string>
+
+    <!-- Common actions -->
+    <string name="action_mark_done">✓ Klaar</string>
+    <string name="action_disable">✕ Uitschakelen</string>
+    <string name="action_save">Opslaan</string>
+    <string name="action_cancel">Annuleren</string>
+    <string name="action_create">Maken</string>
+    <string name="action_delete">Verwijderen</string>
+    <string name="action_add">Toevoegen</string>
+    <string name="action_close">Sluiten</string>
+    <string name="action_back">Terug</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title">🌿 RetroNest</string>
+    <string name="onboarding_who">Wie gebruikt dit toestel?</string>
+    <string name="onboarding_parent">👨 Ouder</string>
+    <string name="onboarding_child">🧒 Kind</string>
+    <string name="onboarding_name_title">Hoe mogen we je noemen?</string>
+    <string name="onboarding_name_hint">Jouw naam</string>
+    <string name="onboarding_name_required">Voer je naam in</string>
+    <string name="onboarding_start">Start met RetroNest</string>
+
+    <!-- Bottom nav -->
+    <string name="nav_home">Home</string>
+    <string name="nav_tasks">Taken</string>
+    <string name="nav_wallet">Portemonnee</string>
+    <string name="nav_calendar">Kalender</string>
+    <string name="nav_settings">Instellingen</string>
+
+    <!-- Home -->
+    <string name="home_parent_dashboard">📋 Ouderdashboard</string>
+    <string name="home_child_today">⭐ Vandaag</string>
+    <string name="home_open_tasks">Open taken</string>
+    <string name="home_to_approve">Goedkeuren</string>
+    <string name="home_completed">Afgerond</string>
+    <string name="home_today_tasks">Taken voor vandaag</string>
+    <string name="home_no_tasks">Geen taken voor vandaag. Geniet van de rust! 🌿</string>
+
+    <!-- Tasks -->
+    <string name="tasks_all">Alle taken</string>
+    <string name="tasks_mine">Mijn taken</string>
+    <string name="tasks_no_tasks_parent">Nog geen taken. Tik op + om er een te maken.</string>
+    <string name="tasks_no_tasks_child">Geen taken. Kom later terug!</string>
+    <string name="tasks_due">Uiterlijk</string>
+    <string name="tasks_expected">Verwacht: %1$d min</string>
+    <string name="tasks_reward_paid">💰 Beloning: €%1$s</string>
+    <string name="tasks_reward_time">⏰ Beloning: %1$d min</string>
+    <string name="tasks_has_photo">📸 Heeft voltooiingsfoto</string>
+    <string name="tasks_new_title">Nieuwe taak</string>
+    <string name="tasks_title_hint">Titel *</string>
+    <string name="tasks_desc_hint">Beschrijving</string>
+    <string name="tasks_duration_hint">Verwachte duur (min)</string>
+    <string name="tasks_reward_type">Beloningstype</string>
+    <string name="tasks_amount_hint">Bedrag (centen)</string>
+    <string name="tasks_minutes_hint">Minuten</string>
+    <string name="tasks_status_open">Open</string>
+    <string name="tasks_status_awaiting">Wacht op goedkeuring</string>
+    <string name="tasks_status_approved">Goedgekeurd ✓</string>
+    <string name="tasks_status_rejected">Afgewezen</string>
+    <string name="tasks_status_cancelled">Geannuleerd</string>
+    <string name="tasks_complete_photo">📷 Foto nemen &amp; afronden</string>
+    <string name="tasks_approve">✓ Goedkeuren</string>
+    <string name="tasks_reject">✗ Afwijzen</string>
+    <string name="tasks_checklist">Controlelijst</string>
+    <string name="tasks_completion_photo">📸 Voltooiingsfoto</string>
+
+    <!-- Wallet -->
+    <string name="wallet_title">Portemonnee &amp; Tijdbank</string>
+    <string name="wallet_balance">💰 Portemonnee</string>
+    <string name="time_bank_balance">⏰ Tijdbank</string>
+    <string name="wallet_recent">Recente transacties</string>
+    <string name="wallet_empty">Nog geen transacties. Voltooi taken om te verdienen!</string>
+    <string name="wallet_no_tx">Nog geen transacties. Voltooi taken om te verdienen!</string>
+
+    <!-- Calendar -->
+    <string name="calendar_title">Kalender</string>
+    <string name="calendar_upcoming">Aankomende evenementen</string>
+    <string name="calendar_empty">Geen aankomende evenementen. Voeg er een toe met + !</string>
+    <string name="calendar_new_event">Nieuw evenement</string>
+    <string name="calendar_reminder_hint">Herinnering (minuten van tevoren, optioneel)</string>
+    <string name="calendar_date_hint">Datum (dd-MM-jjjj)</string>
+    <string name="calendar_time_hint">Tijd (uu:mm)</string>
+    <string name="calendar_duration_hint">Duur (uren)</string>
+
+    <!-- Chat -->
+    <string name="chat_title">Chat</string>
+    <string name="chat_hint">Typ een bericht...</string>
+    <string name="chat_empty">Berichten met jou en je ouder/kind verschijnen hier. 👋</string>
+
+    <!-- Library -->
+    <string name="library_title">Bibliotheek</string>
+    <string name="library_empty">Nog geen pagina\'s. Maak een categorie en voeg pagina\'s toe!</string>
+    <string name="library_add_category">Nieuwe categorie</string>
+    <string name="library_category_hint">Categorienaam</string>
+    <string name="library_add_page">Nieuwe pagina</string>
+    <string name="library_page_title_hint">Titel *</string>
+    <string name="library_page_body_hint">Inhoud</string>
+    <string name="library_tags_hint">Tags (kommagescheiden)</string>
+
+    <!-- Location -->
+    <string name="location_title">Locatieregels</string>
+    <string name="location_description">Locatieregels tonen lokale herinneringen wanneer het kind een gebied betreedt. 📍</string>
+    <string name="location_empty">Nog geen locatieregels. Voeg er een toe met + !</string>
+    <string name="location_new_rule">Nieuwe locatieregel</string>
+    <string name="location_title_hint">Titel *</string>
+    <string name="location_message_hint">Bericht *</string>
+    <string name="location_place_hint">Plaatsnaam (bijv. Thuis, School)</string>
+    <string name="location_lat_hint">Breedtegraad</string>
+    <string name="location_lng_hint">Lengtegraad</string>
+    <string name="location_radius_hint">Aangepaste straal (meters)</string>
+    <string name="location_active_hours">Actieve uren</string>
+    <string name="location_active_from">Actief vanaf (u)</string>
+    <string name="location_active_until">Actief tot (u)</string>
+    <string name="location_searching">Zoeken...</string>
+    <string name="location_found">✓ Gevonden: %1$s</string>
+    <string name="location_not_found">Plaats niet gevonden - voer handmatig coördinaten in</string>
+    <string name="location_pick_contact">Kies contactadres</string>
+    <string name="location_import_contact">📇 Importeren uit contacten</string>
+
+    <!-- Settings -->
+    <string name="settings_theme_title">Thema</string>
+    <string name="settings_accessibility_title">Toegankelijkheid</string>
+    <string name="settings_security_title">Beveiliging</string>
+    <string name="settings_about_title">Over</string>
+    <string name="settings_calm_mode">Rustige modus</string>
+    <string name="settings_calm_desc">Verminder visuele prikkels</string>
+    <string name="settings_reduced_motion">Minder beweging</string>
+    <string name="settings_reduced_motion_desc">Minimaliseer animaties</string>
+    <string name="settings_high_contrast">Hoog contrast</string>
+    <string name="settings_high_contrast_desc">Sterkere kleurverschillen</string>
+    <string name="settings_text_scale">Tekstgrootte</string>
+    <string name="settings_pin_setup">PIN-vergrendeling instellen</string>
+    <string name="settings_pin_enabled">PIN-vergrendeling ingeschakeld</string>
+    <string name="settings_pin_desc">Vereis PIN voor toegang tot de app</string>
+    <string name="settings_about_desc">Offline-first familiecoördinatie-app.\nVersie %1$s</string>
+    <string name="settings_language">Taal</string>
+    <string name="settings_language_desc">Kies app-taal</string>
+
+    <!-- PIN -->
+    <string name="pin_unlock_title">Dad Treasury</string>
+    <string name="pin_unlock_hint">Voer je PIN in om te ontgrendelen</string>
+    <string name="pin_label">PIN</string>
+    <string name="pin_unlock">Ontgrendelen</string>
+    <string name="pin_enter">Voer je PIN in</string>
+    <string name="pin_incorrect">Onjuiste PIN (%1$d pogingen over)</string>
+    <string name="pin_locked_out">Te veel pogingen. App vergrendeld. Start opnieuw om te proberen.</string>
+    <string name="pin_locked_title">Te veel mislukte pogingen</string>
+    <string name="pin_locked_restart">Start de app opnieuw om opnieuw te proberen</string>
+    <string name="pin_setup_title">PIN instellen</string>
+    <string name="pin_change_title">PIN wijzigen</string>
+    <string name="pin_protect">Bescherm je familiedata met een PIN</string>
+    <string name="pin_current">Huidige PIN</string>
+    <string name="pin_new">Nieuwe PIN</string>
+    <string name="pin_confirm">Bevestig PIN</string>
+    <string name="pin_short">PIN moet minstens 4 cijfers zijn</string>
+    <string name="pin_digits_only">PIN mag alleen cijfers bevatten</string>
+    <string name="pin_mismatch">PIN\'s komen niet overeen</string>
+    <string name="pin_wrong_current">Huidige PIN is onjuist</string>
+    <string name="pin_enable_btn">PIN inschakelen 🔒</string>
+    <string name="pin_change_btn">PIN wijzigen</string>
+</resources>

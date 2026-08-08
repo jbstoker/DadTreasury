@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App -->
+    <string name="app_name">Dad Treasury</string>
+    <string name="app_tagline">一个平静、私密的家庭中心</string>
+
+    <!-- Common actions -->
+    <string name="action_mark_done">✓ 完成</string>
+    <string name="action_disable">✕ 停用</string>
+    <string name="action_save">保存</string>
+    <string name="action_cancel">取消</string>
+    <string name="action_create">创建</string>
+    <string name="action_delete">删除</string>
+    <string name="action_add">添加</string>
+    <string name="action_close">关闭</string>
+    <string name="action_back">返回</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title">🌿 RetroNest</string>
+    <string name="onboarding_who">谁将使用这台设备？</string>
+    <string name="onboarding_parent">👨 家长</string>
+    <string name="onboarding_child">🧒 孩子</string>
+    <string name="onboarding_name_title">我们该怎么称呼你？</string>
+    <string name="onboarding_name_hint">你的名字</string>
+    <string name="onboarding_name_required">请输入你的名字</string>
+    <string name="onboarding_start">开始使用 RetroNest</string>
+
+    <!-- Bottom nav -->
+    <string name="nav_home">首页</string>
+    <string name="nav_tasks">任务</string>
+    <string name="nav_wallet">钱包</string>
+    <string name="nav_calendar">日历</string>
+    <string name="nav_settings">设置</string>
+
+    <!-- Home -->
+    <string name="home_parent_dashboard">📋 家长面板</string>
+    <string name="home_child_today">⭐ 今天</string>
+    <string name="home_open_tasks">未完成任务</string>
+    <string name="home_to_approve">待批准</string>
+    <string name="home_completed">已完成</string>
+    <string name="home_today_tasks">今日任务</string>
+    <string name="home_no_tasks">今天没有安排任务。享受平静吧！🌿</string>
+
+    <!-- Tasks -->
+    <string name="tasks_all">所有任务</string>
+    <string name="tasks_mine">我的任务</string>
+    <string name="tasks_no_tasks_parent">还没有任务。点击 + 创建一个。</string>
+    <string name="tasks_no_tasks_child">没有任务。稍后再来看！</string>
+    <string name="tasks_due">截止</string>
+    <string name="tasks_expected">预计：%1$d 分钟</string>
+    <string name="tasks_reward_paid">💰 奖励：€%1$s</string>
+    <string name="tasks_reward_time">⏰ 奖励：%1$d 分钟</string>
+    <string name="tasks_has_photo">📸 有完成照片</string>
+    <string name="tasks_new_title">新任务</string>
+    <string name="tasks_title_hint">标题 *</string>
+    <string name="tasks_desc_hint">描述</string>
+    <string name="tasks_duration_hint">预计时长（分钟）</string>
+    <string name="tasks_reward_type">奖励类型</string>
+    <string name="tasks_amount_hint">金额（分）</string>
+    <string name="tasks_minutes_hint">分钟</string>
+    <string name="tasks_status_open">进行中</string>
+    <string name="tasks_status_awaiting">等待批准</string>
+    <string name="tasks_status_approved">已批准 ✓</string>
+    <string name="tasks_status_rejected">已拒绝</string>
+    <string name="tasks_status_cancelled">已取消</string>
+    <string name="tasks_complete_photo">📷 拍照并完成</string>
+    <string name="tasks_approve">✓ 批准</string>
+    <string name="tasks_reject">✗ 拒绝</string>
+    <string name="tasks_checklist">清单</string>
+    <string name="tasks_completion_photo">📸 完成照片</string>
+
+    <!-- Wallet -->
+    <string name="wallet_title">钱包与时间银行</string>
+    <string name="wallet_balance">💰 钱包</string>
+    <string name="time_bank_balance">⏰ 时间银行</string>
+    <string name="wallet_recent">近期交易</string>
+    <string name="wallet_empty">暂无交易。完成任务赚取奖励！</string>
+    <string name="wallet_no_tx">暂无交易。完成任务赚取奖励！</string>
+
+    <!-- Calendar -->
+    <string name="calendar_title">日历</string>
+    <string name="calendar_upcoming">即将到来的活动</string>
+    <string name="calendar_empty">没有即将到来的活动。点击 + 添加！</string>
+    <string name="calendar_new_event">新活动</string>
+    <string name="calendar_reminder_hint">提醒（提前分钟数，可选）</string>
+    <string name="calendar_date_hint">日期（日-月-年）</string>
+    <string name="calendar_time_hint">时间（时:分）</string>
+    <string name="calendar_duration_hint">时长（小时）</string>
+
+    <!-- Chat -->
+    <string name="chat_title">聊天</string>
+    <string name="chat_hint">输入消息...</string>
+    <string name="chat_empty">你与家长/孩子的消息会显示在这里。👋</string>
+
+    <!-- Library -->
+    <string name="library_title">图书馆</string>
+    <string name="library_empty">还没有页面。创建分类并添加页面！</string>
+    <string name="library_add_category">新分类</string>
+    <string name="library_category_hint">分类名称</string>
+    <string name="library_add_page">新页面</string>
+    <string name="library_page_title_hint">标题 *</string>
+    <string name="library_page_body_hint">内容</string>
+    <string name="library_tags_hint">标签（逗号分隔）</string>
+
+    <!-- Location -->
+    <string name="location_title">位置规则</string>
+    <string name="location_description">当孩子进入某个区域时，位置规则会触发本地提醒。📍</string>
+    <string name="location_empty">还没有位置规则。点击 + 添加！</string>
+    <string name="location_new_rule">新位置规则</string>
+    <string name="location_title_hint">标题 *</string>
+    <string name="location_message_hint">消息 *</string>
+    <string name="location_place_hint">地点名称（例如：家、学校）</string>
+    <string name="location_lat_hint">纬度</string>
+    <string name="location_lng_hint">经度</string>
+    <string name="location_radius_hint">自定义半径（米）</string>
+    <string name="location_active_hours">有效时段</string>
+    <string name="location_active_from">从（小时）</string>
+    <string name="location_active_until">至（小时）</string>
+    <string name="location_searching">搜索中...</string>
+    <string name="location_found">✓ 已找到：%1$s</string>
+    <string name="location_not_found">未找到地点 - 请手动输入坐标</string>
+    <string name="location_pick_contact">选择联系人地址</string>
+    <string name="location_import_contact">📇 从联系人导入</string>
+
+    <!-- Settings -->
+    <string name="settings_theme_title">主题</string>
+    <string name="settings_accessibility_title">无障碍</string>
+    <string name="settings_security_title">安全</string>
+    <string name="settings_about_title">关于</string>
+    <string name="settings_calm_mode">平静模式</string>
+    <string name="settings_calm_desc">减少视觉刺激</string>
+    <string name="settings_reduced_motion">减少动态效果</string>
+    <string name="settings_reduced_motion_desc">最小化动画</string>
+    <string name="settings_high_contrast">高对比度</string>
+    <string name="settings_high_contrast_desc">更强烈的颜色差异</string>
+    <string name="settings_text_scale">文字大小</string>
+    <string name="settings_pin_setup">设置 PIN 锁</string>
+    <string name="settings_pin_enabled">PIN 锁已启用</string>
+    <string name="settings_pin_desc">访问应用需要 PIN</string>
+    <string name="settings_about_desc">离线优先的家庭协调应用。\n版本 %1$s</string>
+    <string name="settings_language">语言</string>
+    <string name="settings_language_desc">选择应用语言</string>
+
+    <!-- PIN -->
+    <string name="pin_unlock_title">Dad Treasury</string>
+    <string name="pin_unlock_hint">输入 PIN 解锁</string>
+    <string name="pin_label">PIN</string>
+    <string name="pin_unlock">解锁</string>
+    <string name="pin_enter">输入你的 PIN</string>
+    <string name="pin_incorrect">PIN 错误（剩余 %1$d 次尝试）</string>
+    <string name="pin_locked_out">尝试次数过多。应用已锁定。请重新启动再试。</string>
+    <string name="pin_locked_title">失败尝试次数过多</string>
+    <string name="pin_locked_restart">请重新启动应用再试</string>
+    <string name="pin_setup_title">设置 PIN</string>
+    <string name="pin_change_title">更改 PIN</string>
+    <string name="pin_protect">用 PIN 保护你的家庭数据</string>
+    <string name="pin_current">当前 PIN</string>
+    <string name="pin_new">新 PIN</string>
+    <string name="pin_confirm">确认 PIN</string>
+    <string name="pin_short">PIN 至少需要 4 位数字</string>
+    <string name="pin_digits_only">PIN 只能包含数字</string>
+    <string name="pin_mismatch">PIN 不匹配</string>
+    <string name="pin_wrong_current">当前 PIN 不正确</string>
+    <string name="pin_enable_btn">启用 PIN 🔒</string>
+    <string name="pin_change_btn">更改 PIN</string>
+</resources>

@@ -1,0 +1,6 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Night theme - Compose handles its own UI -->
+    <style name="Theme.DadTreasury" parent="android:Theme.Material.NoActionBar">
+        <item name="android:statusBarColor">@color/black</item>
+    </style>
+</resources>
